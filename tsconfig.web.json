@@ -1,0 +1,19 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "include": [
+    "proControl/env.d.ts",
+    "proControl/**/*",
+    "proControl/**/*.tsx",
+    "proControl/sys/preload/*.d.ts"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@proControl/*": [
+        "proControl/*"
+      ]
+    }
+  }
+}
