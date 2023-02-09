@@ -1,19 +1,14 @@
 import { useCallback } from "react"
-import { ElectronAPI } from "@electron-toolkit/preload"
-declare global {
-  interface Window {
-    electron: ElectronAPI
-  }
-}
+import { ipcRenderer } from "electron"
 
 export const useCommand = <TCommandName, TCommandData>() => {
   //Generic Command Function
-  const send = useCallback(
-    async (name: TCommandName, data: TCommandData) => {
-      window.electron.ipcRenderer.send(name as string, data as any)
+  const order = useCallback(
+    (name: TCommandName, data: TCommandData) => {
+      ipcRenderer.invoke(name as string, data as any)
     },
     [window.electron.ipcRenderer]
   )
 
-  return { send }
+  return { order }
 }

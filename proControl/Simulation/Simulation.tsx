@@ -2,7 +2,7 @@ import { useNavigationState } from "@proControl/Navigation"
 
 export const Simulation = () => {
   //hooks
-  const { module } = useNavigationState()
+  const { path: module } = useNavigationState()
 
   if (module !== "simulation") return null
 

@@ -5,5 +5,5 @@ export * from "./useNavigationCommands"
 import { useNavigationState as useNavigationStateIntern } from "./useNavigationState"
 export const useNavigationState = () => {
   const state = useNavigationStateIntern()
-  return { module: state.module, prevModule: state.prevModule }
+  return { path: state.path, prevPath: state.prevPath }
 }

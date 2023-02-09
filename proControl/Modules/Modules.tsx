@@ -1,10 +1,10 @@
 import { useNavigationState } from "@proControl/Navigation"
 
-export const Assemblies = () => {
+export const Modules = () => {
   //hooks
-  const { module } = useNavigationState()
+  const { path: module } = useNavigationState()
 
-  if (module !== "assemblies") return null
+  if (module !== "modules") return null
 
   return (
     <>

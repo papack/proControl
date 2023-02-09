@@ -1,12 +1,12 @@
-import { ModuleType } from "./types"
+import { PathType } from "./types"
 import { useNavigationState } from "./useNavigationState"
 
 export const useNavigationCommands = () => {
-  const { setModule, setPrevModule, module } = useNavigationState()
+  const { setPath, setPrevPath, path } = useNavigationState()
 
-  const navigateTo = (navigateToThisModule: ModuleType) => {
-    setPrevModule(module)
-    setModule(navigateToThisModule)
+  const navigateTo = (p: PathType) => {
+    setPrevPath(path)
+    setPath(p)
   }
 
   return { navigateTo }

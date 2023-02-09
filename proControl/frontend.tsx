@@ -4,7 +4,7 @@ import { CrashReport } from "@proControl/Application/CrashReport"
 import { Alarms } from "@proControl/Alarms"
 import { Analytics } from "@proControl/Analytics"
 import { Application } from "@proControl/Application"
-import { Assemblies } from "@proControl/Assemblies"
+import { Modules } from "@proControl/Modules"
 import { Audittrail } from "@proControl/Audittrail"
 import { Backup } from "@proControl/Backup"
 import { Batch } from "@proControl/Batch"
@@ -36,7 +36,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Alarms />
       <Analytics />
       <Application />
-      <Assemblies />
+      <Modules />
       <Audittrail />
       <Backup />
       <Batch />

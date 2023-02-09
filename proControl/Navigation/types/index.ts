@@ -1,2 +1,2 @@
-export * from "./ModuleType"
+export * from "./PathType"
 export * from "./NavigationStoreInterface"

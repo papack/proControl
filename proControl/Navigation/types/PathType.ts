@@ -1,8 +1,7 @@
-export type ModuleType =
+export type PathType =
   | "alarms"
   | "analytics"
   | "application"
-  | "assemblies"
   | "audittrail"
   | "backup"
   | "batch"
@@ -12,6 +11,7 @@ export type ModuleType =
   | "desktop"
   | "dialog"
   | "keyboard"
+  | "modules"
   | "navigation"
   | "notifications"
   | "playground"
