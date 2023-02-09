@@ -1,10 +1,10 @@
 import { useNavigationState } from "@proControl/Navigation"
 
-export const Playground = () => {
+export const Brakes = () => {
   //hooks
   const { module } = useNavigationState()
 
-  if (module !== "playground") return null
+  if (module !== "brakes") return null
 
   return (
     <>
