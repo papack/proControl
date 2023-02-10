@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Toolbar init not implemented")
+  console.log("Toolbar init not implemented")
 }

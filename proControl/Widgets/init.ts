@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Widgets init not implemented")
+  console.log("Widgets init not implemented")
 }

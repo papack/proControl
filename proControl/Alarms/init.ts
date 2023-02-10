@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Alarms init not implemented")
+  console.log("Alarms init not implemented")
 }

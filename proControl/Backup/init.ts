@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Backup init not implemented")
+  console.log("Backup init not implemented")
 }

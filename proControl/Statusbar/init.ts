@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Statusbar init not implemented")
+  console.log("Statusbar init not implemented")
 }

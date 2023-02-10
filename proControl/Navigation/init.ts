@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Navigation init not implemented")
+  console.log("Navigation init not implemented")
 }

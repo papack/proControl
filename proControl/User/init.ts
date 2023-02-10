@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("User init not implemented")
+  console.log("User init not implemented")
 }

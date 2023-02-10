@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Batch init not implemented")
+  console.log("Batch init not implemented")
 }

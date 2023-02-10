@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Application init not implemented")
+  console.log("Application init not implemented")
 }

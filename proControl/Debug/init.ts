@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Debug init not implemented")
+  console.log("Debug init not implemented")
 }

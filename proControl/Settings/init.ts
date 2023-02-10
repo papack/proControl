@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Settings init not implemented")
+  console.log("Settings init not implemented")
 }

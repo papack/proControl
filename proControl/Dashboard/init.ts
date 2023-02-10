@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Dashboard init not implemented")
+  console.log("Dashboard init not implemented")
 }

@@ -26,7 +26,7 @@ import initToolbar from "../Toolbar/init"
 import initUser from "../User/init"
 import initWidgets from "../Widgets/init"
 
-export const sysInit = () => {
+export const sysInit = (): void => {
   initAlarms()
   initAnalytics()
   initApplication()

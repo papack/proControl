@@ -48,3 +48,17 @@ export const emit = <TEventType, TDataInterface>(
   if (!observers[event as string]) return
   observers[event as string].forEach((callback) => callback(data, ipcMainEvent))
 }
+
+//off event
+export const off = <TEventType, TDataInterface>(
+  event: TEventType,
+  handler: (data: TDataInterface, ipcMainEvent?: IpcMainEvent) => void
+) => {
+  if (!observers[event as string]) return
+  observers[event as string] = observers[event as string].filter((callback) => callback !== handler)
+
+  //remove event from ipcMain, if no more listeners
+  if (observers[event as string].length === 0) {
+    ipcMain.removeAllListeners(event as string)
+  }
+}

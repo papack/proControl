@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Simulation init not implemented")
+  console.log("Simulation init not implemented")
 }

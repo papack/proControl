@@ -1,5 +1,5 @@
 import { ipcMain } from "electron"
-import { on, emit } from "../sys/events"
+import { on, emit, off } from "../sys/events"
 
 export default () => {
   ipcMain.handle("myCommand", (_, __) => {
@@ -7,7 +7,10 @@ export default () => {
     emit("done", { name: "done from bkend", alter: 5 })
   })
 
-  on("done", (_, __) => {
-    console.log("get done event")
-  })
+  const doneHandler = (data: any) => {
+    console.log("get done event", data)
+  }
+
+  on("done", doneHandler)
+  off("done", doneHandler)
 }

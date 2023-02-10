@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Notifications init not implemented")
+  console.log("Notifications init not implemented")
 }

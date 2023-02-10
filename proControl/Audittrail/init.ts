@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Audittrail init not implemented")
+  console.log("Audittrail init not implemented")
 }

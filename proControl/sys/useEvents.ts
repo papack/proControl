@@ -34,7 +34,12 @@ export const useEvents = <TEventType, TDataInterface>() => {
       //add listener to ui events
       observers[event as string].push(handler as ObserverFunc)
     },
-    []
+    [
+      observers,
+      window.electron.ipcRenderer.on,
+      window.electron.ipcRenderer.send,
+      window.electron.ipcRenderer.removeAllListeners
+    ]
   )
 
   //events emit
@@ -49,7 +54,7 @@ export const useEvents = <TEventType, TDataInterface>() => {
       if (!observers[event as string]) return
       observers[event as string].forEach((callback) => callback(data, ipcRendererEvent))
     },
-    []
+    [observers, window.electron.ipcRenderer.send, window.electron.ipcRenderer.on]
   )
 
   //events off
@@ -66,7 +71,7 @@ export const useEvents = <TEventType, TDataInterface>() => {
         window.electron.ipcRenderer.removeAllListeners(event as string)
       }
     },
-    []
+    [observers, window.electron.ipcRenderer.removeAllListeners, window.electron.ipcRenderer.on]
   )
 
   return { on, off, emit }

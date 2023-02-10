@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Resets init not implemented")
+  console.log("Resets init not implemented")
 }

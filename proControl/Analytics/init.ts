@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Analytics init not implemented")
+  console.log("Analytics init not implemented")
 }

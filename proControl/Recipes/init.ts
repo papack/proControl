@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Recipes init not implemented")
+  console.log("Recipes init not implemented")
 }

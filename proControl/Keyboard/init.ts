@@ -1,4 +1,3 @@
-
 export default () => {
-    console.log("Keyboard init not implemented")
+  console.log("Keyboard init not implemented")
 }
