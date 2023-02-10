@@ -28,12 +28,13 @@ export const Playground = () => {
         </button>
         <button
           onClick={() => {
-            const handler = (_: any, data: MyEventData) => {
+            const handler = (data: MyEventData) => {
               console.log(data.name)
             }
 
             on("myEvent", handler)
             on("a", handler)
+            off("a", handler)
           }}
         >
           listen
