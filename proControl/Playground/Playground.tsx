@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { useNavigationState } from "@proControl/Navigation"
-import { useEvents, useCommand } from "@proControl/sys"
+import { useEvents, useCommand, useRequest } from "@proControl/sys"
 
 export type MyEventType = "myEvent" | "done"
 export interface MyEventData {
@@ -14,11 +13,18 @@ export interface MyEventData {
   age: number
 }
 
+export type MyRequestType = "myRequest"
+export interface MyRequestData {
+  name: string
+  age: number
+}
+
 export const Playground = () => {
   //hooks
   const { location: module } = useNavigationState()
   const { emit, on, off } = useEvents<MyEventType, MyEventData>()
   const { order } = useCommand<MyCommandType, MyEventData>()
+  const { request } = useRequest<MyRequestType, MyRequestData, MyEventData>()
 
   if (module !== "playground") return null
 
@@ -34,6 +40,18 @@ export const Playground = () => {
           }}
         >
           order
+        </button>
+        <button
+          onClick={() => {
+            request("myRequest", {
+              age: 5,
+              name: "form playground"
+            }).then((data) => {
+              console.log(data)
+            })
+          }}
+        >
+          request
         </button>
         <button
           onClick={() => {

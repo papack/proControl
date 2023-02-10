@@ -1,9 +1,10 @@
-import { ipcMain } from "electron"
-import { on, emit, off } from "../sys/events"
+import { on, emit } from "../sys/events"
+import { process } from "../sys/process"
+import { supply } from "../sys/supply"
 
 export default () => {
-  ipcMain.handle("myCommand", (_, __) => {
-    console.log("start command")
+  process("myCommand", (data) => {
+    console.log("start command", data)
     emit("done", { name: "done from bkend", alter: 5 })
   })
 
@@ -11,6 +12,10 @@ export default () => {
     console.log("get done event", data)
   }
 
+  supply("myRequest", (data) => {
+    console.log("start request", data)
+    return { name: "done from bkend sup", alter: 5 }
+  })
+
   on("done", doneHandler)
-  off("done", doneHandler)
 }

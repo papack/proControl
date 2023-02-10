@@ -1,6 +1,7 @@
 import { useNavigationState } from "@proControl/Navigation"
+import { ReactNode } from "react"
 
-export const Storage = () => {
+export const Storage = (): ReactNode => {
   //hooks
   const { location: module } = useNavigationState()
 
