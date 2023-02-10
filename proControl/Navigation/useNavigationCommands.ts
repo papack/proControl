@@ -1,12 +1,12 @@
-import { PathType } from "./types"
+import { LocationType } from "./types"
 import { useNavigationState } from "./useNavigationState"
 
 export const useNavigationCommands = () => {
-  const { setPath, setPrevPath, path } = useNavigationState()
+  const { setLocation, setPrevLocation, location } = useNavigationState()
 
-  const navigateTo = (p: PathType) => {
-    setPrevPath(path)
-    setPath(p)
+  const navigateTo = (l: LocationType) => {
+    setPrevLocation(location)
+    setLocation(l)
   }
 
   return { navigateTo }

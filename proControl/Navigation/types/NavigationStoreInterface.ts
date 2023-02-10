@@ -1,8 +1,8 @@
-import { PathType } from "./PathType"
+import { LocationType } from "./LocationType"
 
 export interface NavigationStoreInterface {
-  path: PathType
-  prevPath: PathType
-  setPath: (module: PathType) => void
-  setPrevPath: (module: PathType) => void
+  location: LocationType
+  prevLocation: LocationType
+  setLocation: (location: LocationType) => void
+  setPrevLocation: (location: LocationType) => void
 }

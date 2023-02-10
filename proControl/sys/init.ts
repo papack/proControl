@@ -21,6 +21,7 @@ import initResets from "../Resets/init"
 import initSettings from "../Settings/init"
 import initSimulation from "../Simulation/init"
 import initStatusbar from "../Statusbar/init"
+import initStorage from "../Storage/init"
 import initToolbar from "../Toolbar/init"
 import initUser from "../User/init"
 import initWidgets from "../Widgets/init"
@@ -49,6 +50,7 @@ export const sysInit = () => {
   initSettings()
   initSimulation()
   initStatusbar()
+  initStorage()
   initToolbar()
   initUser()
   initWidgets()

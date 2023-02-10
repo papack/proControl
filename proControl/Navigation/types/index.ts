@@ -1,2 +1,2 @@
-export * from "./PathType"
+export * from "./LocationType"
 export * from "./NavigationStoreInterface"

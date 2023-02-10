@@ -1,10 +1,10 @@
 import { useNavigationState } from "@proControl/Navigation"
 
-export const Debug = () => {
+export const Storage = () => {
   //hooks
   const { location: module } = useNavigationState()
 
-  if (module !== "debug") return null
+  if (module !== "storage") return null
 
   return (
     <>

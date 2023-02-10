@@ -2,7 +2,7 @@ import { useNavigationState } from "@proControl/Navigation"
 
 export const Batch = () => {
   //hooks
-  const { path: module } = useNavigationState()
+  const { location: module } = useNavigationState()
 
   if (module !== "batch") return null
 

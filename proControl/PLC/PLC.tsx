@@ -2,7 +2,7 @@ import { useNavigationState } from "@proControl/Navigation"
 
 export const PLC = () => {
   //hooks
-  const { path: module } = useNavigationState()
+  const { location: module } = useNavigationState()
 
   if (module !== "plc") return null
 

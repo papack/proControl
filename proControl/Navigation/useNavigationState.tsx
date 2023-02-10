@@ -1,20 +1,20 @@
 import { create } from "zustand"
 import { produce } from "immer"
-import { PathType, NavigationStoreInterface } from "./types"
+import { LocationType, NavigationStoreInterface } from "./types"
 
 const useNavigationStore = create<NavigationStoreInterface>((set) => ({
-  path: "desktop",
-  setPath: (p: PathType) =>
+  location: "desktop",
+  setLocation: (l: LocationType) =>
     set(
-      produce((draft) => {
-        draft.path = p
+      produce((draft: NavigationStoreInterface) => {
+        draft.location = l
       })
     ),
-  prevPath: "desktop",
-  setPrevPath: (p: PathType) =>
+  prevLocation: "desktop",
+  setPrevLocation: (l: LocationType) =>
     set(
-      produce((draft) => {
-        draft.prevPath = p
+      produce((draft: NavigationStoreInterface) => {
+        draft.prevLocation = l
       })
     )
 }))

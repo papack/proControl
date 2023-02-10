@@ -1,6 +1,7 @@
-export type PathType =
+export type LocationType =
   | "alarms"
   | "analytics"
+  | "storage"
   | "application"
   | "audittrail"
   | "backup"
