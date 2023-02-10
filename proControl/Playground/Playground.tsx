@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useNavigationState } from "@proControl/Navigation"
 import { useEvents } from "@proControl/sys/useEvents"
 
-export type MyEventType = "myEvent"
+export type MyEventType = "myEvent" | "a"
 export interface MyEventData {
   name: string
   age: number
@@ -11,11 +11,7 @@ export interface MyEventData {
 export const Playground = () => {
   //hooks
   const { location: module } = useNavigationState()
-  const { emit } = useEvents<MyEventType, MyEventData>()
-
-  useEffect(() => {
-    console.log("add listener")
-  }, [])
+  const { emit, on, off } = useEvents<MyEventType, MyEventData>()
 
   if (module !== "playground") return null
 
@@ -24,18 +20,20 @@ export const Playground = () => {
       <div>
         <button
           onClick={() => {
-            //emit("myEvent", { age: 2, name: "frank" })
-            window.electron.ipcRenderer.sendToHost("myEvent", { age: 2, name: "test" })
+            console.log("i emit")
+            emit("myEvent", { age: 2, name: "frank" })
           }}
         >
           emit
         </button>
         <button
           onClick={() => {
-            //emit("myEvent", { age: 2, name: "frank" })
-            window.electron.ipcRenderer.on("myEvent", () => {
-              console.log("i hear it")
-            })
+            const handler = (_: any, data: MyEventData) => {
+              console.log(data.name)
+            }
+
+            on("myEvent", handler)
+            on("a", handler)
           }}
         >
           listen

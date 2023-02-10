@@ -1,33 +1,59 @@
+import { IpcRendererEvent } from "@electron-toolkit/preload"
 import { useCallback } from "react"
 
-//
-// laut der Doku löst der renderer on nicht aus wenn vom
-// renderer was emittet wird
-// deshalb muss man hier doch einen eigenen event schreiben
-// bei on. löst man dann einfach den internen aus
-//
+/*eslint-disable */
+//types, interfaces, enums, etc. go here
+type ObserverFunc = (event: any, data?: any) => void
+interface ObserverList {
+  [key: string]: Array<ObserverFunc>
+}
 
-export const useEvents = <TEvent, TDataInterface>() => {
-  //on: subscripte to event
+//global observers list
+const observers: ObserverList = {}
+/*eslint-enable */
+
+export const useEvents = <EventType, DataInterface>() => {
+  //events on
   const on = useCallback(
-    (event: TEvent, handler: (event: any, data: TDataInterface) => void) => {
-      //add handler / listener
-      window.electron.ipcRenderer.on(event as string, (_, data) => {
-        console.log("data")
-      })
+    (event: EventType, handler: (event: IpcRendererEvent, data: DataInterface) => void) => {
+      //create new observer list, if not exist
+      if (!observers[event as string]) {
+        observers[event as string] = [] //create new array for event
+      }
+
+      //if the first listener: connect to ipc main
+      if (observers[event as string].length === 0) {
+        window.electron.ipcRenderer.on(event as string, (_, data) => {
+          emit(event, data)
+        })
+      }
+
+      //add listener to ui events
+      observers[event as string].push(handler as ObserverFunc)
     },
-    [window.electron.ipcRenderer.on]
+    []
   )
 
-  //off: unSubscript from event
-  const off = useCallback((event: TEvent, handler: (event: any, data: TDataInterface) => void) => {
-    window.electron.ipcRenderer.removeListener(event as string, handler)
+  //events emit (emit to golang)
+  const emit = useCallback((event: EventType, data: DataInterface) => {
+    window.electron.ipcRenderer.send(event as string, data)
+    if (!observers[event as string]) return
+    observers[event as string].forEach((callback) => callback(undefined, data))
   }, [])
 
-  //send: emit event
-  const emit = useCallback((event: TEvent, data: TDataInterface) => {
-    window.electron.ipcRenderer.send(event as string, data)
-  }, [])
+  //events off
+  const off = useCallback(
+    (event: EventType, handler: (event: IpcRendererEvent, data: DataInterface) => void) => {
+      if (!observers[event as string]) return
+      observers[event as string] = observers[event as string].filter((h) => h !== handler)
+
+      //remove from ipc, if the last removed
+      if (observers[event as string].length === 0) {
+        window.electron.ipcRenderer.removeAllListeners(event as string)
+      }
+    },
+    []
+  )
 
   return { on, off, emit }
 }
