@@ -1,5 +1,6 @@
 module.exports = {
   root: true,
+  endofline: "auto",
   env: {
     browser: true,
     commonjs: true,
