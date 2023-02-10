@@ -1,5 +1,12 @@
-import { IpcRendererEvent } from "@electron-toolkit/preload"
+import { IpcRendererEvent, ElectronAPI } from "@electron-toolkit/preload"
 import { useCallback } from "react"
+
+//declare global, for debug commands
+declare global {
+  interface Window {
+    electron: ElectronAPI
+  }
+}
 
 /*eslint-disable */
 //types, interfaces, enums, etc. go here

@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useNavigationState } from "@proControl/Navigation"
 import { useEvents, useCommand, useRequest } from "@proControl/sys"
 
@@ -22,9 +23,13 @@ export interface MyRequestData {
 export const Playground = () => {
   //hooks
   const { location: module } = useNavigationState()
-  const { emit, on, off } = useEvents<MyEventType, MyEventData>()
+  const { emit, on } = useEvents<MyEventType, MyEventData>()
   const { order } = useCommand<MyCommandType, MyEventData>()
   const { request } = useRequest<MyRequestType, MyRequestData, MyEventData>()
+
+  useEffect(() => {
+    console.log(order)
+  }, [])
 
   if (module !== "playground") return null
 

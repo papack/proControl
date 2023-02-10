@@ -25,6 +25,9 @@ function createWindow(): void {
 
     //show window
     mainWindow.show()
+
+    //debug
+    mainWindow.webContents.openDevTools()
   })
 
   //catch system exeptions

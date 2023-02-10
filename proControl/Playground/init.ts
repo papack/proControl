@@ -8,7 +8,7 @@ export default () => {
     emit("done", { name: "done from bkend", alter: 5 })
   })
 
-  const doneHandler = (data: any) => {
+  const doneHandler = (data) => {
     console.log("get done event", data)
   }
 

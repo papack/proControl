@@ -1,7 +1,6 @@
 import { useNavigationState } from "@proControl/Navigation"
-import { ReactNode } from "react"
 
-export const Alarms = (): ReactNode => {
+export const Alarms = () => {
   //hooks
   const { location: module } = useNavigationState()
 
