@@ -3,7 +3,7 @@ import { useCallback } from "react"
 
 /*eslint-disable */
 //types, interfaces, enums, etc. go here
-type ObserverFunc = (ipcRendererEvent?: IpcRendererEvent, data?: any) => void
+type ObserverFunc = (data?: any, ipcRendererEvent?: IpcRendererEvent) => void
 interface ObserverList {
   [key: string]: Array<ObserverFunc>
 }
@@ -17,7 +17,7 @@ export const useEvents = <TEventType, TDataInterface>() => {
   const on = useCallback(
     (
       event: TEventType,
-      handler: (ipcRendererEvent: IpcRendererEvent, data: TDataInterface) => void
+      handler: (data: TDataInterface, ipcRendererEvent?: IpcRendererEvent) => void
     ) => {
       //create new observer list, if not exist
       if (!observers[event as string]) {
@@ -26,12 +26,9 @@ export const useEvents = <TEventType, TDataInterface>() => {
 
       //if the first listener: connect to ipc main
       if (observers[event as string].length === 0) {
-        window.electron.ipcRenderer.on(
-          event as string,
-          (ipcRendererEvent: IpcRendererEvent, data) => {
-            emit(event, data, ipcRendererEvent)
-          }
-        )
+        window.electron.ipcRenderer.on(event as string, (ipcEv: IpcRendererEvent, data) => {
+          emit(event, data, ipcEv)
+        })
       }
 
       //add listener to ui events
@@ -50,7 +47,7 @@ export const useEvents = <TEventType, TDataInterface>() => {
 
       //call all observers
       if (!observers[event as string]) return
-      observers[event as string].forEach((callback) => callback(ipcRendererEvent, data))
+      observers[event as string].forEach((callback) => callback(data, ipcRendererEvent))
     },
     []
   )
@@ -59,7 +56,7 @@ export const useEvents = <TEventType, TDataInterface>() => {
   const off = useCallback(
     (
       event: TEventType,
-      handler: (ipcRendererEvent: IpcRendererEvent, data: TDataInterface) => void
+      handler: (data: TDataInterface, ipcRendererEvent?: IpcRendererEvent) => void
     ) => {
       if (!observers[event as string]) return
       observers[event as string] = observers[event as string].filter((h) => h !== handler)

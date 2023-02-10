@@ -45,13 +45,12 @@ export const Playground = () => {
         </button>
         <button
           onClick={() => {
-            const handler = (_, data: MyEventData) => {
+            const handler = (data: MyEventData) => {
               console.log(data.name)
             }
 
             on("myEvent", handler)
             on("done", handler)
-            off("done", handler)
           }}
         >
           listen

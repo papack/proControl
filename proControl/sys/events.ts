@@ -3,7 +3,7 @@ import { ipcMain, IpcMainEvent } from "electron"
 
 /*eslint-disable */
 //types, interfaces, enums, etc. go here
-type ObserverFunc = (event?: IpcMainEvent, data?: any) => void
+type ObserverFunc = (data?: any, event?: IpcMainEvent) => void
 interface ObserverList {
   [key: string]: Array<ObserverFunc>
 }
@@ -14,7 +14,7 @@ const observers: ObserverList = {}
 
 export const on = <TEventType, TDataInterface>(
   event: TEventType,
-  handler: (event: IpcMainEvent, data: TDataInterface) => void
+  handler: (data: TDataInterface, ipcMainEvent?: IpcMainEvent) => void
 ) => {
   //create new observer list, if not exist
   if (!observers[event as string]) {
@@ -23,9 +23,9 @@ export const on = <TEventType, TDataInterface>(
 
   //if the first listener: connect to ipc events from renderer
   if (observers[event as string].length === 0) {
-    ipcMain.on(event as string, (ipcMainEvent: IpcMainEvent, data: TDataInterface) => {
+    ipcMain.on(event as string, (ie: IpcMainEvent, data: TDataInterface) => {
       //emit(event, data)
-      emit(event, data, ipcMainEvent)
+      emit(event, data, ie)
     })
   }
 
@@ -46,5 +46,5 @@ export const emit = <TEventType, TDataInterface>(
 
   //call all Observer
   if (!observers[event as string]) return
-  observers[event as string].forEach((callback) => callback(ipcMainEvent, data))
+  observers[event as string].forEach((callback) => callback(data, ipcMainEvent))
 }
