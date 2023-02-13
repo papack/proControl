@@ -1,6 +1,6 @@
 export const colors = {
   //base colors
-  christ: "$blue600",
+  christ: "$blue900",
   text: "$dark",
   dark: "$gray900",
   light: "white",

@@ -1,8 +1,19 @@
 import { useState, useEffect } from "react"
-import { Svg, Rect } from "@proControl/lib/ui/svg"
+import { Svg, Rect, Circle } from "@proControl/lib/ui/svg"
 import { AnalogClockProps } from "./types/AnalogClockProps"
 import { calculateStepLabel, clamp } from "@proControl/Widgets/lib/uitls"
 import { timeToAngle } from "./lib/utils"
+
+const HAND_WIDTH = 7
+const HOUR_HAND_LENGTH = 35
+const MINUTE_HAND_LENGTH = 60
+const HAND_COLOR = "$gray200"
+const HAND_BORDER_COLOR = "$gray800"
+const CLOCKFACE_BACKGROUND_COLOR = "$blue900"
+const CLOCKFACE_BORDER_COLOR = "$gray900"
+const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray600"
+const LABEL_COLOR = "$gray900"
+const HAND_BORDER_WIDTH = 0.5
 
 export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
   //clamp values
@@ -22,35 +33,65 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
   }, [h, m])
 
   return (
-    <Svg viewBox="-100,-100,200,200" width="100%" height="100%">
+    <Svg viewBox="-100,-100,200,200" width="100%" height="100%" fill="none">
       {/** background */}
-      {calculateStepLabel(0, 12, 1, 0, 360).map(({ label, pos }) => {
+      <Circle
+        x={-100}
+        y={-100}
+        r={99}
+        css={{ stroke: CLOCKFACE_BORDER_COLOR, fill: CLOCKFACE_BORDER_BACKGROUND_COLOR }}
+      />
+      <Circle
+        x={-100}
+        y={-100}
+        r={85}
+        css={{ fill: CLOCKFACE_BACKGROUND_COLOR, stroke: CLOCKFACE_BORDER_COLOR }}
+      />
+
+      {/** Label marks */}
+      {calculateStepLabel(0, 60, 1, 0, 360).map(({ label, pos }) => {
         if (label === "0") {
           return
         }
 
+        //5 Min Label
+        if (label % 5 === 0) {
+          return (
+            <Rect
+              key={String(pos)}
+              x={-1}
+              y={-99}
+              width={2}
+              height={14}
+              transform={`rotate(${pos})`}
+              css={{ fill: LABEL_COLOR }}
+            />
+          )
+        }
+
+        // Min Label
         return (
           <Rect
             key={String(pos)}
             x={-1}
-            y={-90}
-            rx={2}
-            width={2}
-            height={10}
+            y={-99}
+            width={0.5}
+            height={14}
             transform={`rotate(${pos})`}
-            css={{ fill: "$gray700" }}
+            css={{ fill: LABEL_COLOR }}
           />
         )
       })}
 
       {/** Minutes */}
       <Rect
-        x={-5}
-        y={-5}
-        height={10}
-        width={80}
+        x={(HAND_WIDTH / 2) * -1}
+        y={(HAND_WIDTH / 2) * -1}
+        height={HAND_WIDTH}
+        strokeWidth={HAND_BORDER_WIDTH}
+        width={MINUTE_HAND_LENGTH}
         rx="4"
-        css={{ fill: "$blue900" }}
+        css={{ fill: HAND_COLOR, stroke: HAND_BORDER_COLOR }}
         transform={`
         rotate(${timeState.minutesAngle})
         `}
@@ -58,11 +99,12 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
 
       {/** Hours */}
       <Rect
-        x={-5}
-        y={-5}
-        height={10}
-        width={50}
-        css={{ fill: "$blue900" }}
+        x={(HAND_WIDTH / 2) * -1}
+        y={(HAND_WIDTH / 2) * -1}
+        strokeWidth={HAND_BORDER_WIDTH}
+        height={HAND_WIDTH}
+        width={HOUR_HAND_LENGTH}
+        css={{ fill: HAND_COLOR, stroke: HAND_BORDER_COLOR }}
         rx="4"
         transform={`
         rotate(${timeState.hoursAngle})
