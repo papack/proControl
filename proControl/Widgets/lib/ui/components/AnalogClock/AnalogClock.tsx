@@ -5,7 +5,7 @@ import { calculateStepLabel, clamp } from "@proControl/Widgets/lib/uitls"
 import { timeToAngle } from "./lib/utils"
 
 const HAND_WIDTH = 7
-const HOUR_HAND_LENGTH = 35
+const HOUR_HAND_LENGTH = 45
 const MINUTE_HAND_LENGTH = 60
 const HAND_COLOR = "$gray200"
 const HAND_BORDER_COLOR = "$gray800"
