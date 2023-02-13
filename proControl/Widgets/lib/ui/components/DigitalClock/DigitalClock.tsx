@@ -1,11 +1,24 @@
+import { Stack, Center } from "@proControl/lib/ui/layout"
 import { DigitalClockProps } from "./types"
+
 export const DigitalClock = ({
   date = new Date("01.01.1970 00:00:00"),
-  locale = "de"
+  locale = "ca"
 }: DigitalClockProps) => {
   return (
-    <div>
-      DigitalClock {date.toDateString()}, locale: {locale}
-    </div>
+    <Stack g="$sm">
+      {/** Time */}
+      <Center fs="$xl">{date.toLocaleTimeString(locale)}</Center>
+
+      {/** Date */}
+      <Center>
+        {date.toLocaleDateString(locale, {
+          weekday: "long",
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        })}
+      </Center>
+    </Stack>
   )
 }

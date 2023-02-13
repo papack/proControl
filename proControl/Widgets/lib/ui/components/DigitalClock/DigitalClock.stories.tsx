@@ -7,7 +7,7 @@ const story: Meta<DigitalClockProps> = {
   component: DigitalClock,
   args: {
     date: new Date(),
-    locale: "af"
+    locale: "de"
   }
 }
 export default story

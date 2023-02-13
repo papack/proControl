@@ -12,7 +12,7 @@ export const { styled, css, globalCss, keyframes, getCssText, theme, createTheme
         ...colors
       },
 
-      fontFamilies: {
+      fonts: {
         ...fontFamilies
       },
 
@@ -60,8 +60,7 @@ export const globalStyles = globalCss({
   "*": {
     margin: 0,
     padding: 0,
-    boxSizing: "border-box",
-    fontFamily: "type-36, sans-serif"
+    boxSizing: "border-box"
   },
   html: {},
   body: {}
