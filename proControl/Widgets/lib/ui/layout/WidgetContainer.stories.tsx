@@ -5,8 +5,7 @@ import { Box } from "@proControl/lib/ui/layout/Box"
 
 const story: Meta<WidgetContainerProps> = {
   title: "widgets/lib/ui/layout/WidgetContainer",
-  component: WidgetContainer,
-  args: {}
+  component: WidgetContainer
 }
 export default story
 

@@ -5,8 +5,8 @@ import { StoryFn, Meta } from "@storybook/react"
 const story: Meta<AnalogClockProps> = {
   title: "widgets/lib/ui/components/AnalogClock",
   args: {
-    date: new Date(),
-    locale: "af"
+    h: 13,
+    m: 37
   },
   component: AnalogClock
 }
