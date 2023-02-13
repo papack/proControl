@@ -1,5 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+
+import { globalStyles } from "@proControl/lib/ui/style"
+
 import { CrashReport } from "@proControl/Application/CrashReport"
 import { Alarms } from "@proControl/Alarms"
 import { Analytics } from "@proControl/Analytics"
@@ -28,8 +31,10 @@ import { Toolbar } from "@proControl/Toolbar"
 import { User } from "@proControl/User"
 import { Widgets } from "@proControl/Widgets"
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+const ProControl = () => {
+  globalStyles()
+
+  return (
     <CrashReport>
       <Statusbar />
       <Toolbar />
@@ -58,5 +63,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <User />
       <Widgets />
     </CrashReport>
+  )
+}
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <ProControl />
   </React.StrictMode>
 )

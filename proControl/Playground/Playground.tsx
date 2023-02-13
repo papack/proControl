@@ -8,8 +8,8 @@ export const Playground = () => {
   if (location !== "playground") return null
 
   return (
-    <Center h="100vh">
-      <Box b="1px solid $red200" p="$xl">
+    <Center h="100vh" bg="$">
+      <Box b="1px solid $red200" p="$md" bg="$borderDanger">
         test
       </Box>
     </Center>
