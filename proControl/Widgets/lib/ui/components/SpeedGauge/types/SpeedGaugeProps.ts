@@ -32,4 +32,7 @@ export interface SpeedGaugeProps {
 
   /** callback for changes */
   onSliderChange?: (v: number) => void
+
+  /** debug */
+  debug?: boolean
 }

@@ -1,3 +1,4 @@
+import { scale } from "./scale"
 /**
  *
  * Give this function two Points Point A(x1,y1) and Point B(x2,y2)
@@ -11,19 +12,24 @@
  * @returns {A,B}
  * @example
  * const A = [0,0]
- * const B = [1,1]
+ * const B = [1,0]
  * const {A,B} = PosAtoPosBCalcAngles(A,B)
- * console.log(A,B) // 45, 225
+ * console.log(A,B) // 90
  *
  *
  */
-export const PosAtoPosBCalcAngles = (A: number[], B: number[]) => {
+export const posAtoPosBCalcAngle = (A: number[], B: number[]) => {
   //calculate radian
   const theta = Math.atan2(B[1] - A[1], B[0] - A[0])
 
   //caculate an return value
-  return {
-    A: (theta * 180) / Math.PI - 90,
-    B: (theta * 180) / Math.PI + 90
+  let angle: number = (theta * 180) / Math.PI + 90
+
+  //only return positive deg
+  if (angle < 0) {
+    angle = 360 + angle
   }
+
+  //return
+  return angle
 }

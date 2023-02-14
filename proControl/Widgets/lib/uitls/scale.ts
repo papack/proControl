@@ -1,3 +1,5 @@
+import { snap as s } from "./snap"
+
 /**
  *  Scales a value from one range to another range
  *
