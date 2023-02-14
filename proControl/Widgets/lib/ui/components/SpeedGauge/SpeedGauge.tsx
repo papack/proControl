@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Line, Rect, Svg, Circle, G, Text } from "@proControl/lib/ui/svg"
-import { Absolute, Relative, Flex, Center, Box, Stack } from "@proControl/lib/ui/layout"
+import { Absolute, Relative, Center, Stack } from "@proControl/lib/ui/layout"
 import {
   calculateCircumference,
   scale,
