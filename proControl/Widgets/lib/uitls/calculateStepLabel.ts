@@ -1,5 +1,10 @@
 import { scale } from "./scale"
 
+interface stepLabel {
+  label: string
+  pos: number
+}
+
 /**
  *
  *  this function calculates the position of the step la *  this function calculates the position of the step labelss
@@ -18,16 +23,16 @@ export const calculateStepLabel = (
   posStart: number,
   posEnd: number
 ) => {
-  const stepLabel = [] as any
+  const stepLabels: stepLabel[] = []
 
   // iterate from min to max with step
   for (let i = from; i <= to; i += step) {
     // calculate position of step label
     const pos = scale(i, [from, to], [posStart, posEnd])
-    stepLabel.push({
+    stepLabels.push({
       label: i.toFixed(0),
       pos
     })
   }
-  return stepLabel
+  return stepLabels
 }
