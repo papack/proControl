@@ -15,6 +15,9 @@ export interface SpeedGaugeProps {
   /** the unit  */
   unit?: string
 
+  /** decimal places */
+  decimalPlaces?: number
+
   /** the step for the decoration  */
   steps: number
 

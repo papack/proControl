@@ -10,6 +10,7 @@ const story: Meta<SpeedGaugeProps> = {
   args: {
     value: 21,
     steps: 1,
+    decimalPlaces: 2,
     min: 0,
     max: 100,
     color: "$christ",
