@@ -24,7 +24,7 @@ export interface SpeedGaugeProps {
   /** the Locale */
   locale: LocaleType
 
-  /** decimal places */
+  /** color */
   color?: Stitches.CSS<typeof config>["color"]
 
   /** show slider/handle? */
