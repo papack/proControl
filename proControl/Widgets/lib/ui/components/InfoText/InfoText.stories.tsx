@@ -6,7 +6,7 @@ const story: Meta<InfoTextProps> = {
   title: "widgets/lib/ui/components/InfoText",
   component: InfoText,
   args: {
-    label: "mein Label",
+    title: "mein Label",
     text: "meine info"
   }
 }

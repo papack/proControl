@@ -1,6 +1,6 @@
 export interface InfoTextProps {
   /** label  */
-  label?: string
+  title?: string
 
   /** text */
   text: string
