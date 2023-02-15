@@ -1,3 +1,5 @@
 import { styled } from "../../style/stitches.config"
 
-export const Svg = styled("svg", {})
+export const Svg = styled("svg", {
+  userSelect: "none"
+})

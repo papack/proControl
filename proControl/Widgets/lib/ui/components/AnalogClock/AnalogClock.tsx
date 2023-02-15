@@ -7,13 +7,14 @@ import { timeToAngle } from "./lib/utils"
 const HAND_WIDTH = 7
 const HOUR_HAND_LENGTH = 45
 const MINUTE_HAND_LENGTH = 60
-const HAND_COLOR = "$gray200"
-const HAND_BORDER_COLOR = "$gray800"
-const CLOCKFACE_BACKGROUND_COLOR = "$blue900"
-const CLOCKFACE_BORDER_COLOR = "$gray900"
-const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray600"
-const LABEL_COLOR = "$gray900"
-const HAND_BORDER_WIDTH = 0.5
+const HAND_COLOR = "white"
+const HAND_BORDER_COLOR = "$christ"
+const CLOCKFACE_BACKGROUND_COLOR = "transparent"
+const CLOCKFACE_BORDER_COLOR = "$christ"
+const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray300"
+const LABEL_COLOR = "$gray800"
+const HAND_BORDER_WIDTH = 0.75
+const BORDER_WIDTH = 1
 
 export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
   //clamp values
@@ -40,13 +41,9 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
         y={-100}
         r={99}
         css={{ stroke: CLOCKFACE_BORDER_COLOR, fill: CLOCKFACE_BORDER_BACKGROUND_COLOR }}
+        strokeWidth={BORDER_WIDTH}
       />
-      <Circle
-        x={-100}
-        y={-100}
-        r={85}
-        css={{ fill: CLOCKFACE_BACKGROUND_COLOR, stroke: CLOCKFACE_BORDER_COLOR }}
-      />
+      <Circle x={-100} y={-100} r={85} css={{ fill: CLOCKFACE_BACKGROUND_COLOR, stroke: "none" }} />
 
       {/** Label marks */}
       {calculateStepLabel(0, 60, 1, 0, 360).map(({ label, pos }) => {
@@ -55,12 +52,12 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
         }
 
         //5 Min Label
-        if (label % 5 === 0) {
+        if (Number(label) % 5 === 0) {
           return (
             <Rect
               key={String(pos)}
               x={-1}
-              y={-99}
+              y={-98}
               width={2}
               height={14}
               transform={`rotate(${pos})`}
@@ -74,7 +71,7 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
           <Rect
             key={String(pos)}
             x={-1}
-            y={-99}
+            y={-98}
             width={0.5}
             height={14}
             transform={`rotate(${pos})`}
@@ -82,6 +79,8 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
           />
         )
       })}
+
+      {/** Hands */}
 
       {/** Minutes */}
       <Rect
