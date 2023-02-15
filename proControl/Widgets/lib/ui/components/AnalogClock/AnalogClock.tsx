@@ -9,7 +9,7 @@ const HOUR_HAND_LENGTH = 45
 const MINUTE_HAND_LENGTH = 60
 const HAND_COLOR = "white"
 const HAND_BORDER_COLOR = "$christ"
-const CLOCKFACE_BACKGROUND_COLOR = "transparent"
+const CLOCKFACE_BACKGROUND_COLOR = "$gray400"
 const CLOCKFACE_BORDER_COLOR = "$christ"
 const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray300"
 const LABEL_COLOR = "$gray800"
@@ -57,7 +57,7 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
             <Rect
               key={String(pos)}
               x={-1}
-              y={-98}
+              y={-99}
               width={2}
               height={14}
               transform={`rotate(${pos})`}
@@ -71,7 +71,7 @@ export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
           <Rect
             key={String(pos)}
             x={-1}
-            y={-98}
+            y={-99}
             width={0.5}
             height={14}
             transform={`rotate(${pos})`}
