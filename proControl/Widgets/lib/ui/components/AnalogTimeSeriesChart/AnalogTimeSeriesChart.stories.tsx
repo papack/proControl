@@ -20,7 +20,7 @@ const story: Meta<AnalogTimeSeriesChartsProps> = {
     },
     locale: "de",
     timezone: "Europe/Berlin",
-    debug: true,
+    debug: false,
     graphs: [
       {
         id: "wirk",

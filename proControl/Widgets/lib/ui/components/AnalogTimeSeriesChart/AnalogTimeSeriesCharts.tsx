@@ -1,6 +1,6 @@
-import { scale, calculateStepLabel, clamp, snap } from "@proControl/Widgets/lib/uitls"
-import React, { useState, useRef, useEffect } from "react"
-import { Svg, Path, Text, Line, Circle } from "@proControl/lib/ui/svg"
+import { scale, calculateStepLabel, snap } from "@proControl/Widgets/lib/uitls"
+import React, { useState, useRef } from "react"
+import { Svg, Text, Line, Circle } from "@proControl/lib/ui/svg"
 import { AnalogTimeSeriesChartsProps } from "./types"
 import { Debug } from "./lib/ui/components/Debug"
 
@@ -29,6 +29,11 @@ export const AnalogTimeSeriesCharts = ({
   //clamp values
   if (ySteps <= 0) {
     ySteps = 0.1
+  }
+
+  //dont scale x to small
+  if (xStepsInMin < 1) {
+    xStepsInMin = 1
   }
 
   //scale steps
