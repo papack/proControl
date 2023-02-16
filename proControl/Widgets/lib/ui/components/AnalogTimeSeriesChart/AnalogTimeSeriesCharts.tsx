@@ -1,6 +1,6 @@
 import { scale, calculateStepLabel, clamp } from "@proControl/Widgets/lib/uitls"
-import { useState, useRef, useEffect } from "react"
-import { Svg, Rect, Text, Line } from "@proControl/lib/ui/svg"
+import React, { useState, useRef, useEffect } from "react"
+import { Svg, Path, Text, Line, Circle } from "@proControl/lib/ui/svg"
 import { AnalogTimeSeriesChartsProps } from "./types"
 import { Debug } from "./lib/ui/components/Debug"
 
@@ -12,8 +12,8 @@ export const AnalogTimeSeriesCharts = ({
   graphs = [],
   locale = "de",
   points = [],
-  xMin = new Date("01.01.1970 14:00").getTime(),
-  xMax = new Date("01.02.1970 14:00").getTime(),
+  xMin = new Date("01.01.2023 14:00").getTime(),
+  xMax = new Date("01.02.2023 14:00").getTime(),
   xStepsInMin = 60 * 3,
   yMax = 100,
   yMin = 0,
@@ -50,7 +50,7 @@ export const AnalogTimeSeriesCharts = ({
         touchAction: "none",
         userSelect: "none"
       }}
-      onPointerDown={(e) => {
+      onPointerMove={(e) => {
         //do nothing, if we dont have the svg ref
         if (!svgRef.current) return
 
@@ -78,7 +78,6 @@ export const AnalogTimeSeriesCharts = ({
           css={{ stroke: "$gray900" }}
         />
       ))}
-
       {/** Time Marks (X-Axis)*/}
       {calculateStepLabel(xMin, xMax, xSteps, 0 + PADDING, width - PADDING).map(
         ({ pos, label }) => (
@@ -104,8 +103,65 @@ export const AnalogTimeSeriesCharts = ({
                 hour: "2-digit"
               })}
             </Text>
+
+            {/** Graphs */}
+
+            {/** Line with Points  */}
+            {points.map(({ timestamp, values }, i) =>
+              values?.map((v, j) => (
+                <React.Fragment key={String(i + j)}>
+                  {/** Draw Line from last to current */}
+                  {i > 0 && !points[i - 1].isMissing && points[i - 1].values && (
+                    <Line
+                      x1={scale(
+                        points[i - 1].timestamp,
+                        [xMin, xMax],
+                        [0 + PADDING, width - PADDING]
+                      )}
+                      x2={scale(timestamp, [xMin, xMax], [0 + PADDING, width - PADDING])}
+                      y1={scale(
+                        points[i - 1].values![j],
+                        [yMin, yMax],
+                        [height - PADDING, 0 + PADDING]
+                      )}
+                      y2={scale(v, [yMin, yMax], [height - PADDING, 0 + PADDING])}
+                      css={{
+                        stroke: graphs[j] ? graphs[j].color : "hotpink"
+                      }}
+                      strokeWidth={0.8}
+                    />
+                  )}
+
+                  {/** Draw point */}
+                  <Circle
+                    cx={scale(timestamp, [xMin, xMax], [0 + PADDING, width - PADDING])}
+                    cy={scale(v, [yMin, yMax], [height - PADDING, 0 + PADDING])}
+                    css={{
+                      fill: graphs[j] ? graphs[j].color : "hotpink"
+                    }}
+                    r={4}
+                  />
+                </React.Fragment>
+              ))
+            )}
           </>
         )
+      )}
+      {/** Shadow */}
+      {/** TODO Schatten mit Timo absprechen, erst handle machen */}
+
+      {/** Handle */}
+      {xPos > PADDING && xPos < width - PADDING && (
+        <>
+          <Circle cx={xPos} cy={20 + PADDING} r={15} fill="rgba(0,0,0,0.4)" />
+          <Line
+            x1={xPos}
+            x2={xPos}
+            y1={20 + 15 + PADDING}
+            y2={height - PADDING}
+            stroke="rgba(0,0,0,0.4)"
+          />
+        </>
       )}
 
       {/** Debug */}
