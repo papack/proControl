@@ -32,8 +32,8 @@ export const Debug = ({
       <Text x={xPos + 5} y={yPos - 5} fill="red" fontSize={fontsize}>
         {xPos},{yPos}
       </Text>
-      <Line x1={0} x2={width} y1={yPos} y2={yPos} stroke="hotpink" strokeWidth={1}></Line>
-      <Line x1={xPos} x2={xPos} y1={0} y2={height} stroke="hotpink" strokeWidth={1}></Line>
+      <Line x1={0} x2={width} y1={yPos} y2={yPos} stroke="hotpink" strokeWidth={1} />
+      <Line x1={xPos} x2={xPos} y1={0} y2={height} stroke="hotpink" strokeWidth={1} />
       <Rect
         x={xPos}
         y={yPos}
@@ -54,8 +54,8 @@ export const Debug = ({
         stroke="yellow"
         transform="translate(-2,-2)"
       />
-      <Line x1={0} x2={width} y1={yCenter} y2={yCenter} stroke="gray" strokeWidth={0.5}></Line>
-      <Line x1={xCenter} x2={xCenter} y1={0} y2={height} stroke="gray" strokeWidth={0.5}></Line>
+      <Line x1={0} x2={width} y1={yCenter} y2={yCenter} stroke="red" strokeWidth={0.4}></Line>
+      <Line x1={xCenter} x2={xCenter} y1={0} y2={height} stroke="red" strokeWidth={0.4}></Line>
       <Text x={xCenter + 5} y={yCenter} fill="red" fontSize={fontsize}>
         {xCenter},{yCenter}
       </Text>

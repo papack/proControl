@@ -8,6 +8,9 @@ const story: Meta<AnalogTimeSeriesChartsProps> = {
   args: {
     width: 500,
     height: 400,
+    yMin: 0,
+    yMax: 1000,
+    ySteps: 100,
     debug: true
   }
 }

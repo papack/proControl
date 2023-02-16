@@ -8,9 +8,9 @@ export interface AnalogTimeSeriesChartsProps {
   graphs: Graph[]
   points: Point[]
   locale: LocaleType
-  xMin: Date
-  xMax: Date
-  xSteps: number //eg. 5 results in 14:00, 20:00, 02:00, 08:00, 14:00 at 24h
+  xMin: number // unix Timestamp
+  xMax: number // unix Timestamp
+  xStepsInMin: number //render a step every x mins
   yMin: number
   yMax: number
   ySteps: number
@@ -27,7 +27,7 @@ interface Graph {
 
 interface Point {
   /** unix timestamp */
-  date: Date
+  timestamp: number
 
   /** a timestamp can be missing (when machine is off or has no power) */
   isMissing?: boolean
