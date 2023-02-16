@@ -1,10 +1,6 @@
-export const snap = (value: number, range: Array<number>) => {
-  //get the min and max values from the range array
-  const [min, max] = range
-
-  //snap the value
-  let v = Math.min(Math.max(value, min), max)
-
-  //return the value
-  return v
+export const snap = (value: number, min: number, max: number) => {
+  if (value < min) return min
+  if (value > max) return max
+  if (value - min > (max - min) / 2) return max
+  return min
 }

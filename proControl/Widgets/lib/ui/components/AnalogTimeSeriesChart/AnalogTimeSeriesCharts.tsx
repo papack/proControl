@@ -1,4 +1,4 @@
-import { scale, calculateStepLabel, clamp } from "@proControl/Widgets/lib/uitls"
+import { scale, calculateStepLabel, clamp, snap } from "@proControl/Widgets/lib/uitls"
 import React, { useState, useRef, useEffect } from "react"
 import { Svg, Path, Text, Line, Circle } from "@proControl/lib/ui/svg"
 import { AnalogTimeSeriesChartsProps } from "./types"
@@ -11,9 +11,11 @@ export const AnalogTimeSeriesCharts = ({
   height = 300,
   graphs = [],
   locale = "de",
+  timezone = "Europe/Berlin",
+  onSliderChange = () => {},
   points = [],
-  xMin = new Date("01.01.2023 14:00").getTime(),
-  xMax = new Date("01.02.2023 14:00").getTime(),
+  xMin = new Date("2023-01-01T13:00:00.000Z").getTime(),
+  xMax = new Date("2023-01-02T13:00:00.000Z").getTime(),
   xStepsInMin = 60 * 3,
   yMax = 100,
   yMin = 0,
@@ -35,6 +37,7 @@ export const AnalogTimeSeriesCharts = ({
   //states
   const [xPos, setXPos] = useState<number>(0)
   const [yPos, setYPos] = useState<number>(0)
+  const [xPosSlider, setXPosSlider] = useState<number>(0)
 
   //refs
   const svgRef = useRef<any>(null)
@@ -61,6 +64,34 @@ export const AnalogTimeSeriesCharts = ({
         //scale "outer" Matrix to "inner Matrix"
         const newXPos = scale(clientX, [l, l + w], [0, width])
         const newYPos = scale(clientY, [t, t + h], [0, height])
+
+        //filter not valid
+        const pointsWithoutMissing = points.filter((p) => {
+          if (p.isMissing) return null
+          return p
+        })
+
+        //Scale xPos to time
+        let ts = scale(newXPos, [PADDING + 0, width - PADDING], [xMin, xMax])
+        for (let i = 1; i < pointsWithoutMissing.length; i++) {
+          if (ts > pointsWithoutMissing[i].timestamp) continue
+          if (ts < pointsWithoutMissing[i - 1].timestamp) continue
+
+          //set slider xPos
+          ts = snap(ts, pointsWithoutMissing[i - 1].timestamp, pointsWithoutMissing[i].timestamp)
+          const newXPosSlider = scale(ts, [xMin, xMax], [0 + PADDING, width - PADDING])
+          setXPosSlider(newXPosSlider)
+
+          const changedData = {}
+          const selectedIndex = pointsWithoutMissing[i - 1].timestamp === ts ? i - 1 : i
+
+          for (const i in pointsWithoutMissing[selectedIndex]!.values) {
+            changedData[graphs[i] && graphs[i].id ? graphs[i].id : i] =
+              pointsWithoutMissing[selectedIndex].values![i]
+          }
+
+          onSliderChange(ts, changedData)
+        }
 
         //set new pos
         setXPos(newXPos)
@@ -100,7 +131,8 @@ export const AnalogTimeSeriesCharts = ({
             >
               {new Date(Number(label)).toLocaleTimeString(locale, {
                 minute: "2-digit",
-                hour: "2-digit"
+                hour: "2-digit",
+                timeZone: timezone
               })}
             </Text>
 
@@ -128,7 +160,7 @@ export const AnalogTimeSeriesCharts = ({
                       css={{
                         stroke: graphs[j] ? graphs[j].color : "hotpink"
                       }}
-                      strokeWidth={0.8}
+                      strokeWidth={2}
                     />
                   )}
 
@@ -148,21 +180,17 @@ export const AnalogTimeSeriesCharts = ({
         )
       )}
       {/** Shadow */}
-      {/** TODO Schatten mit Timo absprechen, erst handle machen */}
+      {/** TODO Add Shadow */}
 
-      {/** Handle */}
-      {xPos > PADDING && xPos < width - PADDING && (
-        <>
-          <Circle cx={xPos} cy={20 + PADDING} r={15} fill="rgba(0,0,0,0.4)" />
-          <Line
-            x1={xPos}
-            x2={xPos}
-            y1={20 + 15 + PADDING}
-            y2={height - PADDING}
-            stroke="rgba(0,0,0,0.4)"
-          />
-        </>
-      )}
+      {/** Slider / Handle */}
+      <Circle cx={xPosSlider} cy={20 + PADDING} r={15} fill="rgba(0,0,0,0.4)" />
+      <Line
+        x1={xPosSlider}
+        x2={xPosSlider}
+        y1={20 + 15 + PADDING}
+        y2={height - PADDING}
+        stroke="rgba(0,0,0,0.4)"
+      />
 
       {/** Debug */}
       <Debug

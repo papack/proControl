@@ -1,6 +1,6 @@
 import type * as Stitches from "@stitches/react"
 import { config } from "@proControl/lib/ui/style/stitches.config"
-import { LocaleType } from "@proControl/Application/Translation/types"
+import { LocaleType, TimeZoneType } from "@proControl/Application/Translation/types"
 
 export interface AnalogTimeSeriesChartsProps {
   width: number
@@ -8,6 +8,8 @@ export interface AnalogTimeSeriesChartsProps {
   graphs: Graph[]
   points: Point[]
   locale: LocaleType
+  timezone: TimeZoneType
+  onSliderChange: (timestamp: number, values: { [key: string]: number }) => void
   xMin: number // unix Timestamp
   xMax: number // unix Timestamp
   xStepsInMin: number //render a step every x mins
@@ -17,15 +19,15 @@ export interface AnalogTimeSeriesChartsProps {
   debug: boolean
 }
 
-interface Graph {
+export interface Graph {
+  /** key for the callback */
+  id: string
+
   /** color of graph line */
   color?: Stitches.CSS<typeof config>["color"]
-
-  /** color under the graph*/
-  color2?: Stitches.CSS<typeof config>["color"]
 }
 
-interface Point {
+export interface Point {
   /** unix timestamp */
   timestamp: number
 
