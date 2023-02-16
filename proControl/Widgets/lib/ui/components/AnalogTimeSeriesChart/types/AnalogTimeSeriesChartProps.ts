@@ -3,8 +3,8 @@ import { config } from "@proControl/lib/ui/style/stitches.config"
 import { LocaleType } from "@proControl/Application/Translation/types"
 
 export interface AnalogTimeSeriesChartsProps {
-  width: string
-  height: string
+  width: number
+  height: number
   graphs: Graph[]
   points: Point[]
   locale: LocaleType
@@ -14,6 +14,7 @@ export interface AnalogTimeSeriesChartsProps {
   yMin: number
   yMax: number
   ySteps: number
+  debug: boolean
 }
 
 interface Graph {
