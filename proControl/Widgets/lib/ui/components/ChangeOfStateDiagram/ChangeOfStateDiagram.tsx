@@ -59,6 +59,15 @@ export const ChangeOfStateDiagram = ({
         )
       })}
 
+      {/** Border */}
+      <Rect
+        x={1}
+        y={PADDING_TOP}
+        height={height - PADDING_BOTTOM - PADDING_TOP}
+        width={width - 2}
+        css={{ stroke: "$gray600" }}
+      />
+
       {/** debug */}
       {debug && (
         <>
