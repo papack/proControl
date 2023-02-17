@@ -7,14 +7,14 @@ import { timeToAngle } from "./lib/utils"
 const HAND_WIDTH = 7
 const HOUR_HAND_LENGTH = 45
 const MINUTE_HAND_LENGTH = 60
-const HAND_COLOR = "white"
+const HAND_COLOR = "$gray100"
 const HAND_BORDER_COLOR = "$christ"
-const CLOCKFACE_BACKGROUND_COLOR = "$gray400"
+const CLOCKFACE_BACKGROUND_COLOR = "transparent"
 const CLOCKFACE_BORDER_COLOR = "$christ"
-const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray300"
+const CLOCKFACE_BORDER_BACKGROUND_COLOR = "$gray200"
 const LABEL_COLOR = "$gray800"
-const HAND_BORDER_WIDTH = 0.75
-const BORDER_WIDTH = 1
+const HAND_BORDER_WIDTH = 0.9
+const BORDER_WIDTH = 1.1
 
 export const AnalogClock = ({ h = 0, m = 0 }: AnalogClockProps) => {
   //clamp values

@@ -7,7 +7,7 @@ const story: Meta<KPIProps> = {
   component: KPI,
   args: {
     title: "techn. Wirkungsgrad",
-    color: "$warning",
+    color: "$information",
     decimalPlaces: 2,
     locale: "de",
     unit: "%",
