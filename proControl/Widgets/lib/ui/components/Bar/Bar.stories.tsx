@@ -15,6 +15,7 @@ const story: Meta<BarProps> = {
     decimalPlaces: 2,
     barColor: "$christ",
     textColor: "$gray900",
+    bold: false,
     innerTextLeft: "",
     innerTextCenter: "",
     innerTextRight: "noch 5 Minuten",

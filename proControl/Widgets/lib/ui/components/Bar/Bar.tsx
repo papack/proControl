@@ -19,6 +19,7 @@ export const Bar = ({
   innerTextLeft = "",
   innerTextRight = "",
   title = "",
+  bold = false,
   debug = false
 }: BarProps) => {
   return (
@@ -79,8 +80,17 @@ export const Bar = ({
             </>
           )}
         </Svg>
+
+        {/** Text */}
         <Absolute top={0} right={0} bottom={0} left={0}>
-          <Flex h="100%" jc="space-between" ai="center" mx="$md" c={textColor}>
+          <Flex
+            h="100%"
+            jc="space-between"
+            ai="center"
+            mx="$md"
+            c={textColor}
+            fw={bold ? "$bold" : undefined}
+          >
             <Box>{innerTextLeft}</Box>
             <Box>{innerTextCenter}</Box>
             <Box>{innerTextRight}</Box>

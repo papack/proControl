@@ -39,6 +39,9 @@ export interface BarProps {
   /** color of Text */
   textColor: Stitches.CSS<typeof config>["color"]
 
+  /** bold */
+  bold?: boolean
+
   /** the Locale */
   locale: LocaleType
 
