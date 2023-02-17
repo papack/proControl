@@ -89,7 +89,7 @@ export const ChangeOfStateDiagram = ({
             y={PADDING_TOP}
             height={height - PADDING_BOTTOM - PADDING_TOP}
             width={width}
-            fill="rgba(0,0,0,0.1)"
+            fill="rgba(255,0,0,0.5)"
           />
         </>
       )}
