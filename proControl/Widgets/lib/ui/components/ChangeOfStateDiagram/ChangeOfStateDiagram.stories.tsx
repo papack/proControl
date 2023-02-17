@@ -9,6 +9,10 @@ const story: Meta<ChangeOfStateDiagramProps> = {
     height: 120,
     width: 600,
     locale: "de",
+    timezone: "Europe/Berlin",
+    min: new Date("2023-01-01T13:00:00.000Z").getTime(),
+    max: new Date("2023-01-02T13:00:00.000Z").getTime(),
+    stepsInMin: 60 * 3,
     onData: (ts, d) => {
       console.log(ts, d)
     },
