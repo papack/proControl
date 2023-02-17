@@ -9,7 +9,10 @@ const story: Meta<ChangeOfStateDiagramProps> = {
     height: 120,
     width: 600,
     locale: "de",
-    debug: true,
+    onData: (ts, d) => {
+      console.log(ts, d)
+    },
+    debug: false,
     changes: [
       {
         beginTimestamp: new Date("2023-01-01T13:30:00.000Z").getTime(),
@@ -24,7 +27,7 @@ const story: Meta<ChangeOfStateDiagramProps> = {
         beginTimestamp: new Date("2023-01-01T16:30:00.000Z").getTime(),
         color: "$red500",
         data: {
-          packMLState: "1",
+          packMLState: "2",
           packMLMode: "2",
           alarms: [{ id: 1, text: "qa" }]
         }
@@ -33,7 +36,7 @@ const story: Meta<ChangeOfStateDiagramProps> = {
         beginTimestamp: new Date("2023-01-01T20:30:00.000Z").getTime(),
         color: "$green300",
         data: {
-          packMLState: "1",
+          packMLState: "3",
           packMLMode: "2",
           alarms: [{ id: 1, text: "qa" }]
         }
@@ -42,7 +45,7 @@ const story: Meta<ChangeOfStateDiagramProps> = {
         beginTimestamp: new Date("2023-01-01T20:40:00.000Z").getTime(),
         color: "$gray300",
         data: {
-          packMLState: "1",
+          packMLState: "4",
           packMLMode: "2",
           alarms: [{ id: 1, text: "qa" }]
         }
@@ -51,7 +54,7 @@ const story: Meta<ChangeOfStateDiagramProps> = {
         beginTimestamp: new Date("2023-01-02T00:40:00.000Z").getTime(),
         color: "$blue400",
         data: {
-          packMLState: "1",
+          packMLState: "5",
           packMLMode: "2",
           alarms: [{ id: 1, text: "qa" }]
         }

@@ -17,7 +17,8 @@ export const ChangeOfStateDiagram = ({
   locale = "de",
   timezone = "Europe/Berlin",
   changes = [],
-  debug = false
+  debug = false,
+  onData = () => {}
 }: ChangeOfStateDiagramProps) => {
   //calc values
   const xCenter = width / 2
@@ -53,7 +54,12 @@ export const ChangeOfStateDiagram = ({
         //start reset timer
         timerRef.current = setTimeout(() => {
           setXPos(width - PADDING_X)
-        }, 2_000)
+
+          //call callback
+          const ts = changes.at(-1)?.beginTimestamp || 0
+          const data = changes.at(-1)?.data || {}
+          onData(ts, data)
+        }, 20_000)
       }}
       onPointerMove={(e) => {
         //do nothing, if we dont have the svg ref
@@ -70,13 +76,24 @@ export const ChangeOfStateDiagram = ({
         //clamp xPos
         newXPos = clamp(newXPos, 0 + PADDING_X, width - PADDING_X)
 
+        //get Timestamp
+        const ts = scale(newXPos, [0 + PADDING_X, width - PADDING_X], [min, max])
+
+        //find data an call callback
+        for (const { beginTimestamp, data } of [...changes].reverse()) {
+          if (ts >= beginTimestamp) {
+            onData(ts, data)
+            break
+          }
+        }
+
         //set new pos
         setXPos(newXPos)
         setYPos(newYPos)
       }}
     >
       {/** Graphic */}
-      {changes.map(({ beginTimestamp, color, data }, i) => {
+      {changes.map(({ beginTimestamp, color }, i) => {
         //calc values
         const xStart = scale(beginTimestamp, [min, max], [0 + PADDING_X, width - PADDING_X])
         const rectWidth =

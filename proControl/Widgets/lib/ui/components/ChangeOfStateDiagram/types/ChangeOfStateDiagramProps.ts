@@ -11,6 +11,7 @@ export interface ChangeOfStateDiagramProps {
   locale: LocaleType
   timezone: TimeZoneType
   changes: change[]
+  onData: (timestamp: number, d: { [key: string]: any }) => void
   debug: boolean
 }
 
