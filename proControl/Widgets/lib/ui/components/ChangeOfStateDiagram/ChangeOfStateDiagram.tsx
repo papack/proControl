@@ -1,6 +1,6 @@
-import { useRef } from "react"
-import { Svg, Rect, Line, Text, Mask } from "@proControl/lib/ui/svg"
-import { scale, calculateStepLabel } from "@proControl/Widgets/lib/uitls"
+import { useRef, useState } from "react"
+import { Svg, Rect, Line, Text, Mask, Circle } from "@proControl/lib/ui/svg"
+import { scale, calculateStepLabel, clamp } from "@proControl/Widgets/lib/uitls"
 import { ChangeOfStateDiagramProps } from "./types"
 
 const PADDING_BOTTOM = 25
@@ -26,8 +26,13 @@ export const ChangeOfStateDiagram = ({
   //scale steps
   const steps = stepsInMin * 60_000
 
+  //state
+  const [xPos, setXPos] = useState<number>(width - PADDING_X)
+  const [yPos, setYPos] = useState<number>(10)
+
   //refs
   const svgRef = useRef<any>(null)
+  const timerRef = useRef<typeof setTimeout | any>(null)
 
   return (
     <Svg
@@ -39,6 +44,35 @@ export const ChangeOfStateDiagram = ({
       css={{
         touchAction: "none",
         userSelect: "none"
+      }}
+      onPointerEnter={() => {
+        //clear Timer
+        if (timerRef.current) clearTimeout(timerRef.current)
+      }}
+      onPointerOut={() => {
+        //start reset timer
+        timerRef.current = setTimeout(() => {
+          setXPos(width - PADDING_X)
+        }, 2_000)
+      }}
+      onPointerMove={(e) => {
+        //do nothing, if we dont have the svg ref
+        if (!svgRef.current) return
+
+        //get geometry of "clickevent" and of svg graphi
+        const { clientX, clientY } = e
+        const { height: h, width: w, left: l, top: t } = svgRef.current.getBoundingClientRect()
+
+        //scale "outer" Matrix to "inner Matrix"
+        let newXPos = scale(clientX, [l, l + w], [0, width])
+        let newYPos = scale(clientY, [t, t + h], [0, height])
+
+        //clamp xPos
+        newXPos = clamp(newXPos, 0 + PADDING_X, width - PADDING_X)
+
+        //set new pos
+        setXPos(newXPos)
+        setYPos(newYPos)
       }}
     >
       {/** Graphic */}
@@ -118,6 +152,10 @@ export const ChangeOfStateDiagram = ({
         )
       )}
 
+      {/** Handle */}
+      <Circle cy={15} cx={xPos} r={11} fill="gray" />
+      <Line x1={xPos} y1={15} x2={xPos} y2={height} stroke="gray" />
+
       {/** debug */}
       {debug && (
         <>
@@ -130,7 +168,7 @@ export const ChangeOfStateDiagram = ({
             transform="translate(-2,-2)"
             fill="red"
           />
-          {/** Complete Image */}
+          {/** Complete SVG Border*/}
           <Rect x={0} y={0} height={height} width={width} stroke="gray" strokeDasharray={2} />
 
           {/** Area to paint the Diagram */}
@@ -139,8 +177,21 @@ export const ChangeOfStateDiagram = ({
             y={PADDING_TOP}
             height={height - PADDING_BOTTOM - PADDING_TOP}
             width={width}
-            fill="rgba(255,0,0,0.5)"
+            fill="rgba(255,0,0,0.2)"
           />
+
+          {/** xPos, yPos */}
+          <Rect
+            x={xPos}
+            y={yPos}
+            width={4}
+            height={4}
+            transform="translate(-2,-2)"
+            fill="red"
+            stroke="yellow"
+          />
+          <Line x1={xPos} y1={0} x2={xPos} y2={height} stroke="red" strokeWidth={0.5} />
+          <Line x1={0} y1={yPos} x2={width} y2={yPos} stroke="red" strokeWidth={0.5} />
         </>
       )}
     </Svg>
