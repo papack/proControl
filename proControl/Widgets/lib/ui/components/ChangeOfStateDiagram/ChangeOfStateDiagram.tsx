@@ -1,10 +1,12 @@
 import { useRef } from "react"
-import { Svg, Rect } from "@proControl/lib/ui/svg"
-import { scale } from "@proControl/Widgets/lib/uitls"
+import { Svg, Rect, Line, Text, Mask } from "@proControl/lib/ui/svg"
+import { scale, calculateStepLabel } from "@proControl/Widgets/lib/uitls"
 import { ChangeOfStateDiagramProps } from "./types"
 
-const PADDING_BOTTOM = 20
+const PADDING_BOTTOM = 25
 const PADDING_TOP = 50
+const PADDING_X = 32
+const RADIUS = 2
 
 export const ChangeOfStateDiagram = ({
   width = 600,
@@ -20,6 +22,9 @@ export const ChangeOfStateDiagram = ({
   //calc values
   const xCenter = width / 2
   const yCenter = height / 2
+
+  //scale steps
+  const steps = stepsInMin * 60_000
 
   //refs
   const svgRef = useRef<any>(null)
@@ -39,17 +44,19 @@ export const ChangeOfStateDiagram = ({
       {/** Graphic */}
       {changes.map(({ beginTimestamp, color, data }, i) => {
         //calc values
-        const xStart = scale(beginTimestamp, [min, max], [0, width])
+        const xStart = scale(beginTimestamp, [min, max], [0 + PADDING_X, width - PADDING_X])
         const rectWidth =
           changes.length === i + 1
             ? //last element
               width - xStart
             : //"normal element" -> begin of next element - xStart of current
-              scale(changes[i + 1].beginTimestamp, [min, max], [0, width]) - xStart
+              scale(changes[i + 1].beginTimestamp, [min, max], [0 + PADDING_X, width - PADDING_X]) -
+              xStart
 
         //Rect
         return (
           <Rect
+            mask="url(#borderMask)"
             x={xStart}
             y={0 + PADDING_TOP}
             height={height - PADDING_BOTTOM - PADDING_TOP}
@@ -61,12 +68,55 @@ export const ChangeOfStateDiagram = ({
 
       {/** Border */}
       <Rect
-        x={1}
+        x={1 + PADDING_X}
         y={PADDING_TOP}
         height={height - PADDING_BOTTOM - PADDING_TOP}
-        width={width - 2}
-        css={{ stroke: "$gray600" }}
+        width={width - 2 - PADDING_X * 2}
+        rx={RADIUS}
+        css={{ stroke: "$gray400" }}
       />
+
+      {/** Border Mask */}
+      <Mask id="borderMask">
+        <Rect
+          x={1 + PADDING_X}
+          y={PADDING_TOP}
+          height={height - PADDING_BOTTOM - PADDING_TOP}
+          width={width - 2 - PADDING_X * 2}
+          rx={RADIUS}
+          fill="white"
+        />
+      </Mask>
+
+      {/** Time Marks (X-Axis)*/}
+      {calculateStepLabel(min, max, steps, 0 + PADDING_X, width - PADDING_X).map(
+        ({ pos, label }) => (
+          <>
+            <Line
+              x1={pos}
+              x2={pos}
+              y1={height - PADDING_BOTTOM}
+              y2={height - PADDING_BOTTOM + 5}
+              strokeWidth={1}
+              css={{ stroke: "$gray900" }}
+            />
+            <Text
+              x={pos}
+              y={height - PADDING_BOTTOM + 20}
+              fill="black"
+              textAnchor="middle"
+              fontSize={14}
+              fontFamily="type-36, sans-serif"
+            >
+              {new Date(Number(label)).toLocaleTimeString(locale, {
+                minute: "2-digit",
+                hour: "2-digit",
+                timeZone: timezone
+              })}
+            </Text>
+          </>
+        )
+      )}
 
       {/** debug */}
       {debug && (
