@@ -3,16 +3,16 @@ productName: proControl
 directories:
   buildResources: build
 files:
-  - '!**/.vscode/*'
-  - '!proControl/*'
-  - '!electron.vite.config.{js,ts,mjs,cjs}'
-  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
-  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - "!**/.vscode/*"
+  - "!proControl/*"
+  - "!electron.vite.config.{js,ts,mjs,cjs}"
+  - "!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}"
+  - "!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}"
 asarUnpack:
   - resources/*
 afterSign: build/notarize.js
 win:
-  executableName: electron-app
+  executableName: proControl
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

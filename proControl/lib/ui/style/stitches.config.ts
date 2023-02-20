@@ -63,5 +63,73 @@ export const globalStyles = globalCss({
     boxSizing: "border-box"
   },
   html: {},
-  body: {}
+  body: {},
+
+  //
+  //Typography
+  //
+  "@font-face": [
+    //Thin
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-thin-hdc.ttf')",
+      fontWeight: "100"
+    },
+
+    //ExtraLight
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-extra-light-hdc.ttf')",
+      fontWeight: "200"
+    },
+
+    //Light
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-light-hdc.ttf')",
+      fontWeight: "300"
+    },
+
+    //Regular, Normal
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-regular-hdc.ttf')",
+      fontWeight: "400"
+    },
+
+    //Medium
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-medium-hdc.ttf')",
+      fontWeight: "500"
+    },
+
+    //SemiBold
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-semi-bold-hdc.ttf')",
+      fontWeight: "600"
+    },
+
+    //Bold
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-bold-hdc.ttf')",
+      fontWeight: "700"
+    },
+
+    //ExtraBold
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-extra-bold-hdc.ttf')",
+      fontWeight: "800"
+    },
+
+    //Black
+    {
+      fontFamily: "type-36",
+      src: "url('fonts/type-36-black-hdc.ttf')",
+      fontWeight: "900"
+    }
+  ]
 })
