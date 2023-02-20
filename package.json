@@ -25,6 +25,7 @@
     "@electron-toolkit/preload": "^1.0.3",
     "@electron-toolkit/utils": "^1.0.2",
     "@stitches/react": "^1.2.8",
+    "framer-motion": "^9.0.4",
     "immer": "^9.0.19",
     "react-error-boundary": "^3.1.4",
     "zustand": "^4.3.2"
