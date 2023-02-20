@@ -11,16 +11,16 @@ export const Desktop = () => {
   if (location !== "desktop") return null
 
   return (
-    <Grid grdTemplateRows="1fr auto" h="100%">
+    <Grid grdTemplateRows="1fr auto" h="100%" py="$md">
       <DesktopSwitcher>
         <DesktopItem>
-          <Box s="100%" bg="black"></Box>
+          <Box s="100%">content</Box>
         </DesktopItem>
         <DesktopItem>
-          <Box s="100%" bg="red"></Box>
+          <Box s="100%">content</Box>
         </DesktopItem>
         <DesktopItem>
-          <Box s="100%" bg="gold"></Box>
+          <Box s="100%">content</Box>
         </DesktopItem>
       </DesktopSwitcher>
       <Center p="$md">
