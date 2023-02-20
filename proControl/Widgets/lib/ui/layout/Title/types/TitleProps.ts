@@ -1,4 +1,4 @@
 export interface TitleProps {
   /** Title */
-  title: string
+  text: string
 }

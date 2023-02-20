@@ -6,7 +6,7 @@ const story: Meta<TitleProps> = {
   title: "widgets/lib/ui/layout/Title",
   component: Title,
   args: {
-    title: "Meine Überschrift"
+    text: "Meine Überschrift"
   }
 }
 export default story

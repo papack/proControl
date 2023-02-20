@@ -23,6 +23,7 @@ export const Check = ({
         s="24px"
         r={variant === "radio" ? "9999px" : "$md"}
         p={variant === "radio" ? "2px" : "1px"}
+        bg="white"
         css={{
           borderWidth: "1px",
           borderStyle: "solid",
