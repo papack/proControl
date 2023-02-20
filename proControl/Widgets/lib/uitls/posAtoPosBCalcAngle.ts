@@ -1,4 +1,3 @@
-import { scale } from "./scale"
 /**
  *
  * Give this function two Points Point A(x1,y1) and Point B(x2,y2)

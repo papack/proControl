@@ -15,7 +15,7 @@ export const Legend = ({
         <Box bg={color} s="$lg" mt="1px" />
         <Box>{label}</Box>
       </Flex>
-      <Box>
+      <Flex ai="center">
         {value &&
           unit &&
           value.toLocaleString(locale, {
@@ -23,7 +23,7 @@ export const Legend = ({
             minimumFractionDigits: decimalPlaces >= 0 ? decimalPlaces : 0
           })}{" "}
         {unit && `[${unit}]`}
-      </Box>
+      </Flex>
     </Flex>
   )
 }

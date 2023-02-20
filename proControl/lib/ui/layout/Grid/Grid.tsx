@@ -1,7 +1,6 @@
-import React from "react";
-import { forwardRef } from "react";
-import { GridItem } from "../GridItem";
-import { GridProps } from "./GridProps";
+import { forwardRef } from "react"
+import { GridItem } from "../GridItem"
+import { GridProps } from "./GridProps"
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>((props, ref) => {
   return (
@@ -29,10 +28,10 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>((props, ref) => {
         gridTemplateAreas: props.grdTemplateAreas,
         gridTemplateColumns: props.grdTemplateColumns,
         gridTemplateRows: props.grdTemplateRows,
-        ...props.css,
+        ...props.css
       }}
     >
       {props.children}
     </GridItem>
-  );
-});
+  )
+})

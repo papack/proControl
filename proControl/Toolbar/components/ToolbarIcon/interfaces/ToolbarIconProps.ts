@@ -1,21 +1,21 @@
-import { IconName } from "@cps/ui/components/Icon/types";
+import { IconType } from "@proControl/lib/ui/components/Icon/types"
 
 export interface ToolbarIconProps {
   /** Variant of the Toolbaricon*/
-  variant: "primary" | "enabled" | "deactivated";
+  variant: "primary" | "enabled" | "deactivated"
 
   /** should we show a border  */
-  border?: boolean;
+  border?: boolean
 
   /** Name of the icon to use */
-  iconName: IconName;
+  iconName: IconType
 
   /** color of the icon */
-  iconColor?: string;
+  iconColor?: string
 
   /** onClick */
-  onClick?: (geometry: DOMRect) => void;
+  onClick?: (geometry: DOMRect) => void
 
   /** onClickDeactivated */
-  onClickDeactivated?: (geometry: DOMRect) => void;
+  onClickDeactivated?: (geometry: DOMRect) => void
 }

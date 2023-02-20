@@ -1,5 +1,3 @@
-import { PackMLMode } from "@cps/hooks/usePackML/types";
-
 export interface VerticalToggleViewProps {
   /** show Maintenance Mode Toggle butto */
   showMaintenanceButton: boolean;
@@ -8,7 +6,7 @@ export interface VerticalToggleViewProps {
   enableVerticalToggle: boolean;
 
   /** active Mode */
-  activeMode: PackMLMode;
+  activeMode: string;
 
   /** user click on Maintenance */
   onClickMaintenaceMode: () => void;

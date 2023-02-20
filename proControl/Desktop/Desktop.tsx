@@ -24,9 +24,6 @@ export const Desktop = () => {
             <GridItem grdColumn="1/3" grdRow="1/2">
               <History></History>
             </GridItem>
-            <GridItem grdColumn="3/5" grdRow="2/3">
-              <History></History>
-            </GridItem>
           </Grid>
         </DesktopItem>
         <DesktopItem>

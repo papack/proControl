@@ -59,6 +59,10 @@ export const AnalogTimeSeriesCharts = ({
         userSelect: "none"
       }}
       onPointerMove={(e) => {
+        //stop event bubbling
+        e.stopPropagation()
+        e.preventDefault()
+
         //do nothing, if we dont have the svg ref
         if (!svgRef.current) return
 
@@ -188,11 +192,11 @@ export const AnalogTimeSeriesCharts = ({
       {/** TODO Add Shadow */}
 
       {/** Slider / Handle */}
-      <Circle cx={xPosSlider} cy={20 + PADDING} r={15} fill="rgba(0,0,0,0.4)" />
+      <Circle cx={xPosSlider} cy={10} r={10} fill="rgba(0,0,0,0.4)" />
       <Line
         x1={xPosSlider}
         x2={xPosSlider}
-        y1={20 + 15 + PADDING}
+        y1={10 + 10}
         y2={height - PADDING}
         stroke="rgba(0,0,0,0.4)"
       />

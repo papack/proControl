@@ -1,4 +1,4 @@
-import { Absolute, Relative, Center, Stack, Box } from "@proControl/lib/ui/layout"
+import { Absolute, Relative, Center, Stack } from "@proControl/lib/ui/layout"
 import { Svg, Rect, Circle, Line, G } from "@proControl/lib/ui/svg"
 import { calculateCircumference, scale } from "@proControl/Widgets/lib/uitls"
 import { RingChartProps } from "./types"

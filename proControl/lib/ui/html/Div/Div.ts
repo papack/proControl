@@ -5,5 +5,9 @@ export const Div = styled("div", {
   padding: 0,
   userSelect: "none",
   boxSizing: "border-box",
-  fontFamily: "$body"
+  fontFamily: "$body",
+  scrollbarWidth: "none",
+  "::-webkit-scrollbar": {
+    display: "none"
+  }
 })

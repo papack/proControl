@@ -1,7 +1,6 @@
-import React from "react";
-import { forwardRef } from "react";
-import { Background } from "../Background";
-import { BlurProps } from "./BlurProps";
+import { forwardRef } from "react"
+import { Background } from "../Background"
+import { BlurProps } from "./BlurProps"
 
 export const Blur = forwardRef<HTMLDivElement, BlurProps>((props, ref) => {
   return (
@@ -10,10 +9,10 @@ export const Blur = forwardRef<HTMLDivElement, BlurProps>((props, ref) => {
       ref={ref}
       css={{
         backdropFilter: "blur(5px)",
-        ...props.css,
+        ...props.css
       }}
     >
       {props.children}
     </Background>
-  );
-});
+  )
+})
