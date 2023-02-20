@@ -60,7 +60,6 @@ const ProControl = () => {
             <Debug />
             <Desktop />
             <Dashboard />
-            <Dialog />
             <Navigation />
             <Playground />
             <PLC />
@@ -76,6 +75,7 @@ const ProControl = () => {
       </Grid>
 
       {/** Overlays */}
+      <Dialog />
       <Keyboard />
       <Notifications />
     </Relative>
