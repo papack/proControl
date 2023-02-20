@@ -8,7 +8,7 @@ export const Playground = () => {
   if (location !== "playground") return null
 
   return (
-    <Center h="100vh" bg="$">
+    <Center h="100%" bg="$gray800">
       <Box b="1px solid $red200" p="$md" bg="$borderDanger">
         test
       </Box>

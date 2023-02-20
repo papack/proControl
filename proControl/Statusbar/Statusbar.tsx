@@ -1,21 +1,9 @@
-import { useNavigationCommands } from "@proControl/Navigation"
+import { Relative, Box } from "@proControl/lib/ui/layout"
 
 export const Statusbar = () => {
-  //hooks
-  const { navigateTo } = useNavigationCommands()
-
   return (
-    <>
-      <div>
-        Statusbar niy!
-        <button
-          onClick={() => {
-            navigateTo("playground")
-          }}
-        >
-          Playground
-        </button>
-      </div>
-    </>
+    <Relative h="80px" w="100%" bg="$gray300">
+      <Box>Statusbar</Box>
+    </Relative>
   )
 }

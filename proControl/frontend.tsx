@@ -1,9 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 
+import { Box, Grid, Center, Relative } from "@proControl/lib/ui/layout"
+
 import { globalStyles } from "@proControl/lib/ui/style"
 
-import { CrashReport } from "@proControl/Application/CrashReport"
 import { Alarms } from "@proControl/Alarms"
 import { Analytics } from "@proControl/Analytics"
 import { Application } from "@proControl/Application"
@@ -35,34 +36,49 @@ const ProControl = () => {
   globalStyles()
 
   return (
-    <CrashReport>
-      <Statusbar />
-      <Toolbar />
-      <Alarms />
-      <Analytics />
-      <Application />
-      <Modules />
-      <Audittrail />
-      <Backup />
-      <Batch />
-      <Brakes />
-      <Debug />
-      <Desktop />
-      <Dashboard />
-      <Notifications />
-      <Dialog />
+    <Relative h="100vh" w="100vw">
+      <Grid s="100%" grdTemplateRows="auto 1fr">
+        {/**Statusbar */}
+        <Statusbar />
+
+        {/** Toolbar */}
+        <Grid s="100%" grdTemplateColumns="auto 1fr">
+          <Center s="100%" px="$lg" pb="$lg">
+            <Toolbar />
+          </Center>
+
+          {/**Content */}
+          <Box s="100%">
+            <Alarms />
+            <Analytics />
+            <Application />
+            <Modules />
+            <Audittrail />
+            <Backup />
+            <Batch />
+            <Brakes />
+            <Debug />
+            <Desktop />
+            <Dashboard />
+            <Dialog />
+            <Navigation />
+            <Playground />
+            <PLC />
+            <Protocol />
+            <Recipes />
+            <Resets />
+            <Settings />
+            <Simulation />
+            <User />
+            <Widgets />
+          </Box>
+        </Grid>
+      </Grid>
+
+      {/** Overlays */}
       <Keyboard />
-      <Navigation />
-      <Playground />
-      <PLC />
-      <Protocol />
-      <Recipes />
-      <Resets />
-      <Settings />
-      <Simulation />
-      <User />
-      <Widgets />
-    </CrashReport>
+      <Notifications />
+    </Relative>
   )
 }
 

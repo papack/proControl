@@ -1,7 +1,9 @@
+import { Box } from "@proControl/lib/ui/layout"
+
 export const Toolbar = () => {
   return (
     <>
-      <div>Toolbar niy!</div>
+      <Box bg="gray">tb!</Box>
     </>
   )
 }
