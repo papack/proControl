@@ -3,7 +3,7 @@ import { Stack, Center, Absolute, Relative } from "@proControl/lib/ui/layout"
 import { scale, calculateCircumference, clamp } from "@proControl/Widgets/lib/uitls"
 import { KPIGaugeProps } from "./types"
 
-const RADIUS = 85
+const RADIUS = 90
 const CIRCUMFERENCE = calculateCircumference(RADIUS)
 
 export const KPIGauge = ({
@@ -37,7 +37,7 @@ export const KPIGauge = ({
               x={0}
               y={0}
               r={RADIUS}
-              strokeWidth={15}
+              strokeWidth={16}
               transform="rotate(-90)"
               strokeDasharray={CIRCUMFERENCE}
               strokeDashoffset={scale(clamp(value, min, max), [min, max], [CIRCUMFERENCE, 0])}
@@ -59,7 +59,7 @@ export const KPIGauge = ({
         <Absolute top={0} right={0} bottom={0} left={0}>
           <Center h="100%">
             <Stack g="$sm">
-              <Center fw="$semibold" fs="$xl">
+              <Center fw="$bold" fs="$xl" c={color}>
                 {value.toLocaleString(locale, {
                   minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
                   maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces

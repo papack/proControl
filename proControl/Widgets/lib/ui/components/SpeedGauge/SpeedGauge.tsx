@@ -75,6 +75,10 @@ export const SpeedGauge = ({
         //do nothing, if handle is disabled
         if (!enableHandle) return
 
+        //stop event bubbling
+        e.preventDefault()
+        e.stopPropagation()
+
         //do nothing, if we dont have the svg ref
         if (!svgRef.current) return
 

@@ -20,9 +20,9 @@ export const Check = ({
     >
       {/** Checkbox */}
       <Box
-        s="24px"
+        s="21px"
         r={variant === "radio" ? "9999px" : "$md"}
-        p={variant === "radio" ? "2px" : "1px"}
+        p={variant === "radio" ? "0px" : "1px"}
         bg="white"
         css={{
           borderWidth: "1px",
