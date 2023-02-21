@@ -20,8 +20,10 @@ export const AnalogClock = () => {
 
   return (
     <WidgetContainer>
-      <Stack ai="center" jc="center" h="100%" p="$md">
-        <AnalogClockComponent h={date.getHours()} m={date.getMinutes()}></AnalogClockComponent>
+      <Stack ai="center" jc="center" h="100%" p="$md" g="$lg">
+        <Box h="230px">
+          <AnalogClockComponent h={date.getHours()} m={date.getMinutes()} />
+        </Box>
         <Box>
           {date.toLocaleDateString("de", {
             weekday: "long",
