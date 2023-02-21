@@ -8,10 +8,10 @@ export const DigitalClock = ({
   return (
     <Stack g="$sm">
       {/** Time */}
-      <Center fs="$3xl">{date.toLocaleTimeString(locale)}</Center>
+      <Center fs="$5xl">{date.toLocaleTimeString(locale)}</Center>
 
       {/** Date */}
-      <Center fs="$md">
+      <Center fs="$xl">
         {date.toLocaleDateString(locale, {
           weekday: "long",
           day: "2-digit",

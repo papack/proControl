@@ -84,7 +84,7 @@ export const History = () => {
               {/** tech Wirkungsgrad */}
               <Legend
                 label="Tec. Wirkungsg."
-                color="$indigo600"
+                color="$gray600"
                 value={techWirkungsgrad}
                 decimalPlaces={1}
                 unit="%"
@@ -110,7 +110,7 @@ export const History = () => {
                 <AnalogTimeSeriesCharts
                   graphs={[
                     { id: "a", color: "$gray900" },
-                    { id: "b", color: "$indigo600" },
+                    { id: "b", color: "$gray600" },
                     { id: "c", color: "$christ" }
                   ]}
                   width={boxRef.current.scrollWidth}

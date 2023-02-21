@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Center } from "@proControl/lib/ui/layout"
+import { Center, Box } from "@proControl/lib/ui/layout"
 import { WidgetContainer } from "../lib/ui/layout"
 import { DigitalClock as DigitalClockComponent } from "../lib/ui/components"
 
@@ -21,7 +21,9 @@ export const DigitalClock = () => {
   return (
     <WidgetContainer>
       <Center h="100%">
-        <DigitalClockComponent date={date} locale="de"></DigitalClockComponent>
+        <Box>
+          <DigitalClockComponent date={date} locale="de"></DigitalClockComponent>
+        </Box>
       </Center>
     </WidgetContainer>
   )

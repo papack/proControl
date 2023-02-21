@@ -24,7 +24,7 @@ export const Current = () => {
 
           {/** Wirkungsgrad */}
           <KPIGauge
-            color="$indigo600"
+            color="$gray600"
             debug={false}
             decimalPlaces={1}
             title="Wirkungsgrad"

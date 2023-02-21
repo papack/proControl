@@ -2,11 +2,22 @@ import { forwardRef } from "react"
 import { BoxProps } from "./BoxProps"
 import { Div } from "../../html/Div"
 
-export const Box = forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+export const Box = forwardRef<HTMLDivElement, BoxProps>((props: any, ref) => {
+  //filter not dom relevant props to prevent warning msgs
+  const {
+    flxDirection,
+    flxShrink,
+    grdRow,
+    grdColumn,
+    grdTemplateRows,
+    grdTemplateColumns,
+    ...divProps
+  } = props
+
   return (
     <Div
       //all props eg. onClick etc
-      {...props}
+      {...divProps}
       //forward ref
       ref={ref}
       //styles

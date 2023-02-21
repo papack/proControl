@@ -110,6 +110,7 @@ export const AnalogTimeSeriesCharts = ({
       {/** Background Lines (Y-Axis)*/}
       {calculateStepLabel(yMin, yMax, ySteps, height - PADDING, 0 + PADDING).map(({ pos }) => (
         <Line
+          key={pos}
           x1={0 + PADDING}
           x2={width - PADDING}
           y1={pos}
@@ -121,7 +122,7 @@ export const AnalogTimeSeriesCharts = ({
       {/** Time Marks (X-Axis)*/}
       {calculateStepLabel(xMin, xMax, xSteps, 0 + PADDING, width - PADDING).map(
         ({ pos, label }) => (
-          <>
+          <React.Fragment key={pos}>
             <Line
               x1={pos}
               x2={pos}
@@ -185,7 +186,7 @@ export const AnalogTimeSeriesCharts = ({
                 </React.Fragment>
               ))
             )}
-          </>
+          </React.Fragment>
         )
       )}
       {/** Shadow */}
