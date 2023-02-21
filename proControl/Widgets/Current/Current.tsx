@@ -1,4 +1,4 @@
-import { Stack, Center, Box } from "@proControl/lib/ui/layout"
+import { Stack, Center } from "@proControl/lib/ui/layout"
 import { Title, WidgetContainer } from "../lib/ui/layout"
 import { KPIGauge } from "../lib/ui/components"
 

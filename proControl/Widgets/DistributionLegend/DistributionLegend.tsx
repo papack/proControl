@@ -1,6 +1,6 @@
 import { Title, WidgetContainer } from "../lib/ui/layout"
-import { Stack, Center, Absolute, Relative } from "@proControl/lib/ui/layout"
-import { RingChart, Legend } from "../lib/ui/components"
+import { Stack } from "@proControl/lib/ui/layout"
+import { Legend } from "../lib/ui/components"
 
 export const DistributionLegend = () => {
   return (

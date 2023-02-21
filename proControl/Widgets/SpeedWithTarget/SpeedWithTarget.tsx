@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Stack, Box, Center } from "@proControl/lib/ui/layout"
 import { SpeedGauge, Legend } from "../lib/ui/components"
-import { Title, WidgetContainer, InnerContainer } from "../lib/ui/layout"
+import { Title, WidgetContainer } from "../lib/ui/layout"
 
 export const SpeedWithTarget = () => {
   //state
