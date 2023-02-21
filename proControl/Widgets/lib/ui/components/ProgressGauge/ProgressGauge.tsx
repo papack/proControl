@@ -17,7 +17,7 @@ export const ProgressGauge = ({
   debug = false
 }: ProgressGaugeProps) => {
   return (
-    <Relative>
+    <Relative s="100%">
       <Svg viewBox="-100, -100, 200, 200" fill="none" width="100%" height="100%">
         {/** Background Ring */}
         <Circle x={0} y={0} r={RADIUS} css={{ stroke: "$gray600" }} />
@@ -54,7 +54,7 @@ export const ProgressGauge = ({
         )}
       </Svg>
       <Absolute top="0px" right="0px" bottom="0px" left="0px">
-        <Center h="100%" fs="$3xl" fw="$bold" c={color}>
+        <Center h="100%" fs="$4xl" fw="$semibold" c={color}>
           {value.toLocaleString(locale, {
             minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
             maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces

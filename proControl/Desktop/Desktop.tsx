@@ -10,6 +10,11 @@ import { DistributionLegend } from "@proControl/Widgets/DistributionLegend"
 import { Speed } from "@proControl/Widgets/Speed"
 import { SpeedWithTarget } from "@proControl/Widgets/SpeedWithTarget"
 
+import { AnalogClock } from "@proControl/Widgets/AnalogClock"
+import { DigitalClock } from "@proControl/Widgets/DigitalClock"
+import { Batch } from "@proControl/Widgets/Batch"
+import { Progress } from "@proControl/Widgets/Progress"
+
 export const Desktop = () => {
   //hooks
   const { location } = useNavigationState()
@@ -27,28 +32,61 @@ export const Desktop = () => {
             h="100%"
             g="$lg"
           >
+            {/** History */}
             <GridItem grdColumn="1/3" grdRow="1/2">
               <History />
             </GridItem>
+
+            {/** Current */}
             <GridItem grdColumn="3/5" grdRow="1/2">
               <Current />
             </GridItem>
+
+            {/** Speed (with Target)*/}
             <GridItem grdColumn="2/3" grdRow="2/3">
               <SpeedWithTarget />
             </GridItem>
+
+            {/** Distribution */}
             <GridItem grdColumn="3/4" grdRow="2/3">
               <Distribution />
             </GridItem>
+
+            {/** Distribution - Legend */}
             <GridItem grdColumn="1/2" grdRow="2/3">
               <DistributionLegend />
             </GridItem>
+
+            {/** Speed */}
             <GridItem grdColumn="4/5" grdRow="2/3">
               <Speed />
             </GridItem>
           </Grid>
         </DesktopItem>
         <DesktopItem>
-          <Box s="100%">content</Box>
+          <Grid
+            grdTemplateRows="repeat(2, 1fr)"
+            grdTemplateColumns="repeat(4, 1fr)"
+            h="100%"
+            g="$lg"
+          >
+            {/** Progress */}
+            <GridItem grdColumn="1/2" grdRow="1/2">
+              <Progress />
+            </GridItem>
+            {/** Batch */}
+            <GridItem grdColumn="2/3" grdRow="1/2">
+              <Batch />
+            </GridItem>
+            {/** Digital Clock*/}
+            <GridItem grdColumn="3/4" grdRow="1/2">
+              <DigitalClock />
+            </GridItem>
+            {/** Analog Clock*/}
+            <GridItem grdColumn="4/5" grdRow="1/2">
+              <AnalogClock />
+            </GridItem>
+          </Grid>
         </DesktopItem>
         <DesktopItem>
           <Box s="100%">content</Box>

@@ -5,7 +5,7 @@ export const InfoBox = ({ title, children }: InfoBoxProps) => {
   return (
     <Stack b="1px solid $gray900" r="$md">
       <Box
-        p="$md"
+        p="$sm"
         bg="$gray800"
         c="$onDark"
         rt="$md"
@@ -15,7 +15,9 @@ export const InfoBox = ({ title, children }: InfoBoxProps) => {
       >
         {title}
       </Box>
-      <Box p="$md">{children}</Box>
+      <Box p="$sm" bg="white" rb="$md">
+        {children}
+      </Box>
     </Stack>
   )
 }
