@@ -77,8 +77,8 @@ export const DesktopSwitcher = ({ children }: DesktopSwitcherProps) => {
           left: desktopWidth * (numberOfDesktops - 1) * -1,
           right: 0
         }}
-        dragMomentum={false}
-        transition={{ type: "spring", stiffness: 500, damping: 50, mass: 0.1 }}
+        dragMomentum={true}
+        transition={{ type: "spring", mass: 1, velocity: 0.5, damping: 50, stiffness: 400 }}
         onDragEnd={(_, { offset: { x } }) => {
           onDragEndHandler({
             moveToDesktop,

@@ -1,5 +1,5 @@
 import { Svg, Rect, Circle, Line } from "@proControl/lib/ui/svg"
-import { Stack, Center, Absolute, Relative } from "@proControl/lib/ui/layout"
+import { Box, Stack, Center, Absolute, Relative } from "@proControl/lib/ui/layout"
 import { scale, calculateCircumference, clamp } from "@proControl/Widgets/lib/uitls"
 import { KPIGaugeProps } from "./types"
 
@@ -19,11 +19,11 @@ export const KPIGauge = ({
   min = 0
 }: KPIGaugeProps) => {
   return (
-    <Stack w="145px" g="$lg" jc="space-between" h="100%">
-      {/** Ttle */}
-      <Center h="100%" fw="$semibold" fs="$lg" c={color} css={{ textAlign: "center" }}>
+    <Stack w="145px" g="$lg" jc="space-around" h="100%">
+      {/** Title */}
+      <Box h="100%" fw="$semibold" fs="$lg" c={color} css={{ textAlign: "center" }}>
         {title}
-      </Center>
+      </Box>
 
       {/** Graphic */}
       <Relative>
