@@ -1,4 +1,4 @@
-import { Center, Grid, Box, GridItem } from "@proControl/lib/ui/layout"
+import { Center, Grid, GridItem } from "@proControl/lib/ui/layout"
 import { SlideIndicator } from "@proControl/lib/ui/components"
 import { DesktopItem, DesktopSwitcher, useDesktop } from "./lib/ui/components/DesktopSwitcher"
 import { useNavigationState } from "@proControl/Navigation"
@@ -14,6 +14,14 @@ import { AnalogClock } from "@proControl/Widgets/AnalogClock"
 import { DigitalClock } from "@proControl/Widgets/DigitalClock"
 import { Batch } from "@proControl/Widgets/Batch"
 import { Progress } from "@proControl/Widgets/Progress"
+
+import { Failures } from "@proControl/Widgets/Failures"
+import { MachineState } from "@proControl/Widgets/MachineState"
+import { Maintenance } from "@proControl/Widgets/Maintenance"
+import { Material } from "@proControl/Widgets/Material"
+import { Output } from "@proControl/Widgets/Output"
+import { Stats } from "@proControl/Widgets/Stats"
+import { Cycles } from "@proControl/Widgets/Cycles"
 
 export const Desktop = () => {
   //hooks
@@ -86,10 +94,57 @@ export const Desktop = () => {
             <GridItem grdColumn="4/5" grdRow="1/2">
               <AnalogClock />
             </GridItem>
+            {/** Machine State */}
+            <GridItem grdColumn="1/3" grdRow="2/3">
+              <MachineState />
+            </GridItem>
+            {/** Maintenance */}
+            <GridItem grdColumn="3/5" grdRow="2/3">
+              <Maintenance />
+            </GridItem>
           </Grid>
         </DesktopItem>
         <DesktopItem>
-          <Box s="100%">content</Box>
+          <Grid
+            grdTemplateRows="repeat(2, 1fr)"
+            grdTemplateColumns="repeat(4, 1fr)"
+            h="100%"
+            g="$lg"
+          >
+            {/** Material */}
+            <GridItem grdColumn="1/3" grdRow="1/2">
+              <Material />
+            </GridItem>
+            {/** Cycles */}
+            <GridItem grdColumn="3/5" grdRow="1/2">
+              <Cycles />
+            </GridItem>
+            {/** Stats */}
+            <GridItem grdColumn="1/3" grdRow="2/3">
+              <Stats />
+            </GridItem>
+            {/** Failures */}
+            <GridItem grdColumn="3/5" grdRow="2/3">
+              <Failures />
+            </GridItem>
+          </Grid>
+        </DesktopItem>
+        <DesktopItem>
+          <Grid
+            grdTemplateRows="repeat(2, 1fr)"
+            grdTemplateColumns="repeat(4, 1fr)"
+            h="100%"
+            g="$lg"
+          >
+            {/** Output */}
+            <GridItem grdColumn="1/3" grdRow="1/2">
+              <Output />
+            </GridItem>
+            {/** Machine State */}
+            <GridItem grdColumn="3/5" grdRow="1/2">
+              <MachineState />
+            </GridItem>
+          </Grid>
         </DesktopItem>
       </DesktopSwitcher>
       <Center p="$md">
