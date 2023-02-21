@@ -3,7 +3,7 @@ import { DesktopProps } from "./interfaces"
 
 export const DesktopItem = ({ children }: DesktopProps) => {
   return (
-    <FlexItem s="100%" flxShrink={0}>
+    <FlexItem s="100%" flxShrink={0} p="$lg">
       {children}
     </FlexItem>
   )

@@ -43,7 +43,7 @@ const ProControl = () => {
 
         {/** Toolbar */}
         <Grid s="100%" grdTemplateColumns="auto 1fr">
-          <Center s="100%" px="$lg" pb="$lg">
+          <Center s="100%" pl="$lg" pb="$lg">
             <Toolbar />
           </Center>
 

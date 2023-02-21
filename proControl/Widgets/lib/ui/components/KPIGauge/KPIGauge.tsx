@@ -19,9 +19,9 @@ export const KPIGauge = ({
   min = 0
 }: KPIGaugeProps) => {
   return (
-    <Stack w="200px" g="$lg">
+    <Stack w="145px" g="$lg" jc="space-between" h="100%">
       {/** Ttle */}
-      <Center fw="$bold" fs="$2xl" c={color} css={{ textAlign: "center" }}>
+      <Center h="100%" fw="$semibold" fs="$lg" c={color} css={{ textAlign: "center" }}>
         {title}
       </Center>
 
@@ -37,7 +37,7 @@ export const KPIGauge = ({
               x={0}
               y={0}
               r={RADIUS}
-              strokeWidth={20}
+              strokeWidth={15}
               transform="rotate(-90)"
               strokeDasharray={CIRCUMFERENCE}
               strokeDashoffset={scale(clamp(value, min, max), [min, max], [CIRCUMFERENCE, 0])}
@@ -59,7 +59,7 @@ export const KPIGauge = ({
         <Absolute top={0} right={0} bottom={0} left={0}>
           <Center h="100%">
             <Stack g="$sm">
-              <Center fw="$bold" fs="$xl">
+              <Center fw="$semibold" fs="$xl">
                 {value.toLocaleString(locale, {
                   minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
                   maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces
