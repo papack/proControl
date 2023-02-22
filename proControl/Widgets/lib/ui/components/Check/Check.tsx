@@ -1,5 +1,5 @@
 import { Icon } from "@proControl/lib/ui/components"
-import { Box, Flex } from "@proControl/lib/ui/layout"
+import { Box, Grid } from "@proControl/lib/ui/layout"
 import { CheckProps } from "./types"
 
 export const Check = ({
@@ -12,8 +12,10 @@ export const Check = ({
   variant = "check"
 }: CheckProps) => {
   return (
-    <Flex
+    <Grid
       g={gap}
+      grdTemplateColumns="auto 1fr"
+      ai="center"
       onClick={(e) => {
         disabled ? onClickDisabled(e) : onClick(e)
       }}
@@ -39,9 +41,7 @@ export const Check = ({
       </Box>
 
       {/** text */}
-      <Box c={disabled ? "$gray700" : undefined} pt="2px">
-        {lable}
-      </Box>
-    </Flex>
+      <Box c={disabled ? "$gray700" : undefined}>{lable}</Box>
+    </Grid>
   )
 }
