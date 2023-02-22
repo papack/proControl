@@ -68,7 +68,6 @@ export const Stats = () => {
           </Stack>
 
           {/**Right inner */}
-
           <Box s="100%">
             <Scroll>
               <Stack s="100%" g="$sm">

@@ -14,6 +14,7 @@ export const Bar = ({
   max = 100,
   min = 0,
   unit = "",
+  labelWidth = "60px",
   value = 0,
   innerTextCenter = "",
   innerTextLeft = "",
@@ -23,15 +24,21 @@ export const Bar = ({
   debug = false
 }: BarProps) => {
   return (
-    <Flex g="$md">
+    <Flex g="$md" w="100%">
       {title && (
         <Flex jc="flex-start" ai="center" w={titleWidth}>
           {title}
         </Flex>
       )}
 
-      <Relative>
-        <Svg width="100%" height="100%" viewBox="-200,-20,400,40" fill="none">
+      <Relative w="100%" h="36px">
+        <Svg
+          width="100%"
+          height="100%"
+          viewBox="-200,-20,400,40"
+          fill="none"
+          preserveAspectRatio="none"
+        >
           {/** mask */}
           <Mask id="bar">
             <Rect
@@ -82,14 +89,16 @@ export const Bar = ({
         </Svg>
 
         {/** Text */}
-        <Absolute top={0} right={0} bottom={0} left={0}>
+        <Absolute top={0} right={0} bottom={0} left={0} w="100%">
           <Flex
             h="100%"
+            w="100%"
             jc="space-between"
             ai="center"
             mx="$md"
             c={textColor}
             fw={bold ? "$bold" : undefined}
+            pr="15px"
           >
             <Box>{innerTextLeft}</Box>
             <Box>{innerTextCenter}</Box>
@@ -97,7 +106,7 @@ export const Bar = ({
           </Flex>
         </Absolute>
       </Relative>
-      <Center>
+      <Center w={labelWidth}>
         {value.toLocaleString(locale, {
           minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
           maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces

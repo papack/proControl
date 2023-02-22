@@ -65,6 +65,10 @@ export const ChangeOfStateDiagram = ({
         //do nothing, if we dont have the svg ref
         if (!svgRef.current) return
 
+        //prevent event bubbling
+        e.preventDefault()
+        e.stopPropagation()
+
         //get geometry of "clickevent" and of svg graphi
         const { clientX, clientY } = e
         const { height: h, width: w, left: l, top: t } = svgRef.current.getBoundingClientRect()

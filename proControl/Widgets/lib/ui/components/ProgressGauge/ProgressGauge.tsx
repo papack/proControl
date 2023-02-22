@@ -1,4 +1,4 @@
-import { Absolute, Center, Relative } from "@proControl/lib/ui/layout"
+import { Absolute, Center, Relative, Box } from "@proControl/lib/ui/layout"
 import { Svg, Rect, Circle, Line } from "@proControl/lib/ui/svg"
 import { calculateCircumference, scale } from "@proControl/Widgets/lib/uitls"
 import { ProgressGaugeProps } from "./types"
@@ -55,11 +55,13 @@ export const ProgressGauge = ({
       </Svg>
       <Absolute top="0px" right="0px" bottom="0px" left="0px">
         <Center h="100%" fs="$4xl" fw="$semibold" c={color}>
-          {value.toLocaleString(locale, {
-            minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
-            maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces
-          })}
-          {unit && ` ${unit}`}
+          <Box mt="-2px">
+            {value.toLocaleString(locale, {
+              minimumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces,
+              maximumFractionDigits: decimalPlaces <= 0 ? 0 : decimalPlaces
+            })}
+            {unit && ` ${unit}`}
+          </Box>
         </Center>
       </Absolute>
     </Relative>

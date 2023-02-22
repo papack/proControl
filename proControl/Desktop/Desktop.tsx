@@ -140,10 +140,6 @@ export const Desktop = () => {
             <GridItem grdColumn="1/3" grdRow="1/2">
               <Output />
             </GridItem>
-            {/** Machine State */}
-            <GridItem grdColumn="3/5" grdRow="1/2">
-              <MachineState />
-            </GridItem>
           </Grid>
         </DesktopItem>
       </DesktopSwitcher>

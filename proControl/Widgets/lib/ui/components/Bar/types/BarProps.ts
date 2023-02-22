@@ -12,6 +12,9 @@ export interface BarProps {
   /** title width */
   titleWidth: string
 
+  /** label width */
+  labelWidth?: string
+
   /** min */
   min: number
 
