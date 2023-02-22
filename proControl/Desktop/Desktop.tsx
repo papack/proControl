@@ -22,6 +22,7 @@ import { Material } from "@proControl/Widgets/Material"
 import { Output } from "@proControl/Widgets/Output"
 import { Stats } from "@proControl/Widgets/Stats"
 import { Cycles } from "@proControl/Widgets/Cycles"
+import { Custom } from "@proControl/Widgets/Custom"
 
 export const Desktop = () => {
   //hooks
@@ -139,6 +140,11 @@ export const Desktop = () => {
             {/** Output */}
             <GridItem grdColumn="1/3" grdRow="1/2">
               <Output />
+            </GridItem>
+
+            {/** Custom */}
+            <GridItem grdColumn="3/4" grdRow="1/2">
+              <Custom />
             </GridItem>
           </Grid>
         </DesktopItem>
