@@ -1,3 +1,5 @@
+import { Button } from "@proControl/lib/ui/components"
+import { SinglePageTemplate } from "@proControl/lib/templates"
 import { useNavigationState } from "@proControl/Navigation"
 
 export const Dashboard = () => {
@@ -7,8 +9,8 @@ export const Dashboard = () => {
   if (module !== "dashboard") return null
 
   return (
-    <>
-      <div>{module}</div>
-    </>
+    <SinglePageTemplate panelSize="normal" title="Dashboard">
+      <Button title="Hello World" panelSize="normal" variant="enabled" />
+    </SinglePageTemplate>
   )
 }

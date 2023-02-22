@@ -11,6 +11,8 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>((props: any, ref) => {
     grdColumn,
     grdTemplateRows,
     grdTemplateColumns,
+    minH,
+    minW,
     ...divProps
   } = props
 
