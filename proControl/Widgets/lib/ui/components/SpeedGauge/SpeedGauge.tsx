@@ -42,7 +42,6 @@ export const SpeedGauge = ({
   const [yPos, setYPos] = useState<number>(0)
   const [targetAngle, setTargetAngle] = useState<number>(0)
   const [lastTargetAngle, setLastTargetAngle] = useState<number>(0)
-  const [enableHandle, setEnableHandle] = useState<boolean>(false)
   const [sliderValue, setSliderValue] = useState<number>(sliderStartValue)
 
   //refs
@@ -59,21 +58,9 @@ export const SpeedGauge = ({
   return (
     <Relative
       s="100%"
-      onPointerDown={() => {
-        if (!hasSlider) return
-        setEnableHandle(true)
-      }}
-      onPointerUp={() => {
-        if (!hasSlider) return
-        setEnableHandle(false)
-      }}
-      onPointerLeave={() => {
-        if (!hasSlider) return
-        setEnableHandle(false)
-      }}
       onPointerMove={(e) => {
-        //do nothing, if handle is disabled
-        if (!enableHandle) return
+        //only handle touch
+        if (e.pointerType === "mouse") return
 
         //stop event bubbling
         e.preventDefault()

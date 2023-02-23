@@ -148,7 +148,7 @@ export const Desktop = () => {
           </Grid>
         </DesktopItem>
       </DesktopSwitcher>
-      <Center p="$md">
+      <Center pb="$lg">
         <SlideIndicator current={currentDesktop} total={numberOfDesktops} />
       </Center>
     </Grid>

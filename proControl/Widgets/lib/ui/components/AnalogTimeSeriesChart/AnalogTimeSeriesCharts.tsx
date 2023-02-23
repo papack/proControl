@@ -59,6 +59,9 @@ export const AnalogTimeSeriesCharts = ({
         userSelect: "none"
       }}
       onPointerMove={(e) => {
+        //only handle touch
+        if (e.pointerType === "mouse") return
+
         //stop event bubbling
         e.stopPropagation()
         e.preventDefault()
