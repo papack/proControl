@@ -172,7 +172,7 @@ export const Dashboard = ({}: DashboardProps) => {
                       bottom={0}
                       left={0}
                       r="$md"
-                      bg="rgba(255,0,0,0.2)"
+                      bg="rgba(0,0,0,0.3)"
                       css={{ backdropFilter: "blur(1px)" }}
                     >
                       <Center h="100%">

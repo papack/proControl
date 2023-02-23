@@ -27,7 +27,10 @@ function createWindow(): void {
     mainWindow.show()
 
     //debug
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
+
+    //fullscreen
+    mainWindow.setFullScreen(true)
   })
 
   //catch system exeptions
