@@ -27,29 +27,29 @@ export const WidgetDisplay = () => {
 
   return (
     <Grid grdTemplateRows="repeat(2, 1fr)" grdTemplateColumns="repeat(4, 1fr)" h="100%" g="$lg">
-      {items.map(({ xPos, yPos, height, id, width }, index) => (
+      {items.map(({ xPos, yPos, height, widgetId, width }, index) => (
         <GridItem
           key={index}
           grdColumn={`${xPos}/${xPos + width}`}
           grdRow={`${yPos}/${yPos + height}`}
         >
-          {id === "AnalogClock" && <AnalogClock />}
-          {id === "Batch" && <Batch />}
-          {id === "Current" && <Current />}
-          {id === "Custom" && <Custom />}
-          {id === "Cycles" && <Cycles />}
-          {id === "DigitalClock" && <DigitalClock />}
-          {id === "Distribution" && <Distribution />}
-          {id === "Failures" && <Failures />}
-          {id === "History" && <History />}
-          {id === "MachineState" && <MachineState />}
-          {id === "Maintenance" && <Maintenance />}
-          {id === "Material" && <Material />}
-          {id === "Output" && <Output />}
-          {id === "Progress" && <Progress />}
-          {id === "Speed" && <Speed />}
-          {id === "SpeedWithTarget" && <SpeedWithTarget />}
-          {id === "Stats" && <Stats />}
+          {widgetId === "AnalogClock" && <AnalogClock />}
+          {widgetId === "Batch" && <Batch />}
+          {widgetId === "Current" && <Current />}
+          {widgetId === "Custom" && <Custom />}
+          {widgetId === "Cycles" && <Cycles />}
+          {widgetId === "DigitalClock" && <DigitalClock />}
+          {widgetId === "Distribution" && <Distribution />}
+          {widgetId === "Failures" && <Failures />}
+          {widgetId === "History" && <History />}
+          {widgetId === "MachineState" && <MachineState />}
+          {widgetId === "Maintenance" && <Maintenance />}
+          {widgetId === "Material" && <Material />}
+          {widgetId === "Output" && <Output />}
+          {widgetId === "Progress" && <Progress />}
+          {widgetId === "Speed" && <Speed />}
+          {widgetId === "SpeedWithTarget" && <SpeedWithTarget />}
+          {widgetId === "Stats" && <Stats />}
         </GridItem>
       ))}
     </Grid>

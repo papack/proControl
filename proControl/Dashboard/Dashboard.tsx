@@ -65,7 +65,8 @@ const SelectBox = ({
       w={mode === "normal" ? "300px" : "500px"}
       onClick={() => {
         addDashboardItem({
-          id,
+          id: String(Math.round(Math.random() * 1_000_000_000)),
+          widgetId: id,
           xPos,
           yPos,
           width: mode === "normal" ? 1 : 2,
@@ -147,23 +148,23 @@ export const Dashboard = ({}: DashboardProps) => {
                     }}
                   >
                     <Absolute top={0} right={0} bottom={0} left={0}>
-                      {posInfo.id === "AnalogClock" && <AnalogClock />}
-                      {posInfo.id === "Batch" && <Batch />}
-                      {posInfo.id === "Current" && <Current />}
-                      {posInfo.id === "Custom" && <Custom />}
-                      {posInfo.id === "Cycles" && <Cycles />}
-                      {posInfo.id === "DigitalClock" && <DigitalClock />}
-                      {posInfo.id === "Distribution" && <Distribution />}
-                      {posInfo.id === "Failures" && <Failures />}
-                      {posInfo.id === "History" && <History />}
-                      {posInfo.id === "MachineState" && <MachineState />}
-                      {posInfo.id === "Maintenance" && <Maintenance />}
-                      {posInfo.id === "Material" && <Material />}
-                      {posInfo.id === "Output" && <Output />}
-                      {posInfo.id === "Progress" && <Progress />}
-                      {posInfo.id === "Speed" && <Speed />}
-                      {posInfo.id === "SpeedWithTarget" && <SpeedWithTarget />}
-                      {posInfo.id === "Stats" && <Stats />}
+                      {posInfo.widgetId === "AnalogClock" && <AnalogClock />}
+                      {posInfo.widgetId === "Batch" && <Batch />}
+                      {posInfo.widgetId === "Current" && <Current />}
+                      {posInfo.widgetId === "Custom" && <Custom />}
+                      {posInfo.widgetId === "Cycles" && <Cycles />}
+                      {posInfo.widgetId === "DigitalClock" && <DigitalClock />}
+                      {posInfo.widgetId === "Distribution" && <Distribution />}
+                      {posInfo.widgetId === "Failures" && <Failures />}
+                      {posInfo.widgetId === "History" && <History />}
+                      {posInfo.widgetId === "MachineState" && <MachineState />}
+                      {posInfo.widgetId === "Maintenance" && <Maintenance />}
+                      {posInfo.widgetId === "Material" && <Material />}
+                      {posInfo.widgetId === "Output" && <Output />}
+                      {posInfo.widgetId === "Progress" && <Progress />}
+                      {posInfo.widgetId === "Speed" && <Speed />}
+                      {posInfo.widgetId === "SpeedWithTarget" && <SpeedWithTarget />}
+                      {posInfo.widgetId === "Stats" && <Stats />}
                     </Absolute>
                     <Absolute
                       top={0}
