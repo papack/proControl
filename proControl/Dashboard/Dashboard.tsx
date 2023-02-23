@@ -110,7 +110,19 @@ export const Dashboard = ({}: DashboardProps) => {
             const posInfo = requestPositionInfo(j + 1, i + 1)
 
             return (
-              <GridItem key={`${j}-${i}`}>
+              <GridItem
+                key={`${j}-${i}`}
+                grdColumn={
+                  posInfo !== null
+                    ? `${posInfo!.xPos}/${posInfo!.xPos + posInfo!.width}`
+                    : undefined
+                }
+                grdRow={
+                  posInfo !== null
+                    ? `${posInfo!.yPos}/${posInfo!.yPos + posInfo!.height}`
+                    : undefined
+                }
+              >
                 {posInfo === null ? (
                   //ADD
                   <Center
@@ -128,17 +140,47 @@ export const Dashboard = ({}: DashboardProps) => {
                   </Center>
                 ) : (
                   //REMOVE
-                  <Center
-                    h="100%"
-                    b="1px dashed gray"
+                  <Relative
+                    s="100%"
                     onClick={() => {
                       removeDashboardItem(posInfo)
                     }}
                   >
-                    <Box s="64px" b="1px solid $failure" p="16px" r="999px">
-                      <Icon name="loeschen" color="$failure" />
-                    </Box>
-                  </Center>
+                    <Absolute top={0} right={0} bottom={0} left={0}>
+                      {posInfo.id === "AnalogClock" && <AnalogClock />}
+                      {posInfo.id === "Batch" && <Batch />}
+                      {posInfo.id === "Current" && <Current />}
+                      {posInfo.id === "Custom" && <Custom />}
+                      {posInfo.id === "Cycles" && <Cycles />}
+                      {posInfo.id === "DigitalClock" && <DigitalClock />}
+                      {posInfo.id === "Distribution" && <Distribution />}
+                      {posInfo.id === "Failures" && <Failures />}
+                      {posInfo.id === "History" && <History />}
+                      {posInfo.id === "MachineState" && <MachineState />}
+                      {posInfo.id === "Maintenance" && <Maintenance />}
+                      {posInfo.id === "Material" && <Material />}
+                      {posInfo.id === "Output" && <Output />}
+                      {posInfo.id === "Progress" && <Progress />}
+                      {posInfo.id === "Speed" && <Speed />}
+                      {posInfo.id === "SpeedWithTarget" && <SpeedWithTarget />}
+                      {posInfo.id === "Stats" && <Stats />}
+                    </Absolute>
+                    <Absolute
+                      top={0}
+                      right={0}
+                      bottom={0}
+                      left={0}
+                      r="$md"
+                      bg="rgba(255,0,0,0.2)"
+                      css={{ backdropFilter: "blur(1px)" }}
+                    >
+                      <Center h="100%">
+                        <Box s="64px" b="2px solid $failure" p="16px" r="999px" bg="white">
+                          <Icon name="loeschen" color="$failure" />
+                        </Box>
+                      </Center>
+                    </Absolute>
+                  </Relative>
                 )}
               </GridItem>
             )
