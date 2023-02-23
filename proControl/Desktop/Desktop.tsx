@@ -1,15 +1,9 @@
-import { Center, Grid, GridItem } from "@proControl/lib/ui/layout"
+import { Center, Grid } from "@proControl/lib/ui/layout"
 import { SlideIndicator, AppIcon } from "@proControl/lib/ui/components"
 import { useNavigationCommands } from "@proControl/Navigation"
 import { DesktopItem, DesktopSwitcher, useDesktop } from "./lib/ui/components/DesktopSwitcher"
 import { useNavigationState } from "@proControl/Navigation"
 import { WidgetDisplay } from "@proControl/Dashboard/WidgetDisplay/"
-
-import { History } from "@proControl/Widgets/History"
-import { Current } from "@proControl/Widgets/Current"
-import { Distribution } from "@proControl/Widgets/Distribution"
-import { Speed } from "@proControl/Widgets/Speed"
-import { SpeedWithTarget } from "@proControl/Widgets/SpeedWithTarget"
 
 export const Desktop = () => {
   //hooks

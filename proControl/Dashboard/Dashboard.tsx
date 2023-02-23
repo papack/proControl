@@ -35,9 +35,9 @@ import { SpeedWithTarget } from "@proControl/Widgets/SpeedWithTarget"
 import { Stats } from "@proControl/Widgets/Stats"
 
 import { DashboardProps } from "./types"
-import { useDashboardCommands } from "./useDashboardCommands"
-
 import { WidgetType } from "@proControl/Widgets/types"
+import { useDashboardRequest } from "./useDashboardRequest"
+import { useDashboardCommands } from "./useDashboardCommands"
 
 interface SelectBoxProps {
   id: WidgetType
@@ -45,16 +45,16 @@ interface SelectBoxProps {
   yPos: number
   children: React.ReactNode
   mode: "wide" | "normal"
-  onSelect: (id: string, xPos: number, yPos: number) => void
+  onSelect: () => void
 }
 
 const SelectBox = ({
   id,
   mode = "wide",
   children = null,
-  onSelect = () => {},
   xPos = 0,
-  yPos = 0
+  yPos = 0,
+  onSelect = () => {}
 }: SelectBoxProps) => {
   //hooks
   const { addDashboardItem } = useDashboardCommands()
@@ -64,8 +64,6 @@ const SelectBox = ({
       h="300px"
       w={mode === "normal" ? "300px" : "500px"}
       onClick={() => {
-        onSelect(id, xPos, yPos)
-
         addDashboardItem({
           id,
           xPos,
@@ -73,12 +71,15 @@ const SelectBox = ({
           width: mode === "normal" ? 1 : 2,
           height: 1
         })
+        onSelect()
       }}
     >
       <Absolute top={0} right={0} bottom={0} left={0}>
         {children}
       </Absolute>
-      <Absolute top={0} right={0} bottom={0} left={0}></Absolute>
+      <Absolute top={0} right={0} bottom={0} left={0}>
+        {/** Prevent klicks */}
+      </Absolute>
     </Relative>
   )
 }
@@ -88,142 +89,61 @@ export const Dashboard = ({}: DashboardProps) => {
   const { location } = useNavigationState()
   const { panelSize } = usePanelSize()
 
+  //request
+  const { requestPositionInfo } = useDashboardRequest()
+
+  //commands
+  const { removeDashboardItem } = useDashboardCommands()
+
   //states
   const [show, setShow] = useState<boolean>(false)
   const [xPos, setXPos] = useState<number>(0)
   const [yPos, setYPos] = useState<number>(0)
-
-  //callbacks
-  const onSelectHandler = (id: string, xPos: number, yPos: number) => {
-    console.log("select: ", id, xPos, yPos)
-    setShow(false)
-  }
 
   if (location !== "dashboard") return null
 
   return (
     <SinglePageTemplate title="Dashboard" panelSize={panelSize}>
       <Grid g="$md" grdTemplateColumns="repeat(4, 1fr)" grdTemplateRows="repeat(2,1fr)" h="100%">
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(1)
-              setYPos(1)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(2)
-              setYPos(1)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(3)
-              setYPos(1)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(4)
-              setYPos(1)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(1)
-              setYPos(2)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(2)
-              setYPos(2)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(3)
-              setYPos(2)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
-        <GridItem>
-          <Center
-            h="100%"
-            b="1px dashed gray"
-            onClick={() => {
-              setShow(true)
-              setXPos(4)
-              setYPos(2)
-            }}
-          >
-            <Box s="64px" b="1px solid $christ" p="16px" r="999px">
-              <Icon name="hinzufuegen" color="$christ" />
-            </Box>
-          </Center>
-        </GridItem>
+        {[...Array(2)].map((_, i) => {
+          return [...Array(4)].map((_, j) => {
+            const posInfo = requestPositionInfo(j + 1, i + 1)
+
+            return (
+              <GridItem key={`${j}-${i}`}>
+                {posInfo === null ? (
+                  //ADD
+                  <Center
+                    h="100%"
+                    b="1px dashed gray"
+                    onClick={() => {
+                      setXPos(j + 1)
+                      setYPos(i + 1)
+                      setShow(true)
+                    }}
+                  >
+                    <Box s="64px" b="1px solid $christ" p="16px" r="999px">
+                      <Icon name="hinzufuegen" color="$christ" />
+                    </Box>
+                  </Center>
+                ) : (
+                  //REMOVE
+                  <Center
+                    h="100%"
+                    b="1px dashed gray"
+                    onClick={() => {
+                      removeDashboardItem(posInfo)
+                    }}
+                  >
+                    <Box s="64px" b="1px solid $failure" p="16px" r="999px">
+                      <Icon name="loeschen" color="$failure" />
+                    </Box>
+                  </Center>
+                )}
+              </GridItem>
+            )
+          })
+        })}
       </Grid>
       <Blur show={show} />
       <Modal
@@ -240,153 +160,187 @@ export const Dashboard = ({}: DashboardProps) => {
                 <SelectBox
                   id="AnalogClock"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <AnalogClock />
                 </SelectBox>
                 <SelectBox
                   id="Batch"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Batch />
                 </SelectBox>
                 <SelectBox
                   id="Current"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Current />
                 </SelectBox>
                 <SelectBox
                   id="Custom"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Custom />
                 </SelectBox>
                 <SelectBox
                   id="Cycles"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Cycles />
                 </SelectBox>
                 <SelectBox
                   id="DigitalClock"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <DigitalClock />
                 </SelectBox>
                 <SelectBox
                   id="Distribution"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Distribution />
                 </SelectBox>
                 <SelectBox
                   id="Failures"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Failures />
                 </SelectBox>
                 <SelectBox
                   id="History"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <History />
                 </SelectBox>
                 <SelectBox
                   id="MachineState"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <MachineState />
                 </SelectBox>
                 <SelectBox
                   id="Maintenance"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Maintenance />
                 </SelectBox>
                 <SelectBox
                   id="Material"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Material />
                 </SelectBox>
                 <SelectBox
                   id="Output"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Output />
                 </SelectBox>
                 <SelectBox
                   id="Progress"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Progress />
                 </SelectBox>
                 <SelectBox
                   id="Speed"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Speed />
                 </SelectBox>
                 <SelectBox
                   id="SpeedWithTarget"
                   mode="normal"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <SpeedWithTarget />
                 </SelectBox>
                 <SelectBox
                   id="Stats"
                   mode="wide"
-                  onSelect={onSelectHandler}
                   xPos={xPos}
                   yPos={yPos}
+                  onSelect={() => {
+                    setShow(false)
+                  }}
                 >
                   <Stats />
                 </SelectBox>
