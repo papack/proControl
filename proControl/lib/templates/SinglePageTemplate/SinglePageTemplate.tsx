@@ -42,7 +42,7 @@ export const SinglePageTemplate = ({
       </Flex>
 
       {/** Content */}
-      <Box>{children}</Box>
+      <Box pt="$md">{children}</Box>
     </Grid>
   )
 }

@@ -7,6 +7,7 @@ export const Box = forwardRef<HTMLDivElement, BoxProps>((props: any, ref) => {
   const {
     flxDirection,
     flxShrink,
+    flxWrap,
     grdRow,
     grdColumn,
     grdTemplateRows,

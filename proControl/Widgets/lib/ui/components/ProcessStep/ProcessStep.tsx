@@ -15,7 +15,13 @@ export const ProcessStep = ({
       <Box w="100%">
         <Flex g="$sm" w="100%">
           {[...Array(max)].map((_, i) => (
-            <Center bg={value > i ? "$christ" : "$gray500"} c="$gray200" w="100%" r="$md">
+            <Center
+              key={String(i)}
+              bg={value > i ? "$christ" : "$gray500"}
+              c="$gray200"
+              w="100%"
+              r="$md"
+            >
               {i + 1}
             </Center>
           ))}

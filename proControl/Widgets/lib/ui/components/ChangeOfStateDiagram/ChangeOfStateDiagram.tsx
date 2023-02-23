@@ -111,6 +111,7 @@ export const ChangeOfStateDiagram = ({
         //Rect
         return (
           <Rect
+            key={String(beginTimestamp)}
             mask="url(#borderMask)"
             x={xStart}
             y={0 + PADDING_TOP}

@@ -1,16 +1,19 @@
-import { Button } from "@proControl/lib/ui/components"
+import { Box } from "@proControl/lib/ui/layout"
 import { SinglePageTemplate } from "@proControl/lib/templates"
 import { useNavigationState } from "@proControl/Navigation"
+import { Raster } from "./Raster"
 
 export const Dashboard = () => {
   //hooks
-  const { location: module } = useNavigationState()
+  const { location } = useNavigationState()
 
-  if (module !== "dashboard") return null
+  if (location !== "dashboard") return null
 
   return (
     <SinglePageTemplate panelSize="normal" title="Dashboard">
-      <Button title="Hello World" panelSize="normal" variant="enabled" />
+      <Box h="100%">
+        <Raster />
+      </Box>
     </SinglePageTemplate>
   )
 }
