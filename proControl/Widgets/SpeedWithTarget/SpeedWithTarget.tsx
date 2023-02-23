@@ -23,9 +23,7 @@ export const SpeedWithTarget = () => {
                 sliderStartValue={15.7}
                 onSliderChange={(v) => {
                   setValueTarget(v)
-                  setTimeout(() => {
-                    setValue(v)
-                  }, 1_000)
+                  setValue(v)
                 }}
                 unit="Einheit"
                 decimalPlaces={1}
