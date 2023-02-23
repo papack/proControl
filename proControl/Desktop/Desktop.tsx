@@ -3,6 +3,7 @@ import { SlideIndicator, AppIcon } from "@proControl/lib/ui/components"
 import { useNavigationCommands } from "@proControl/Navigation"
 import { DesktopItem, DesktopSwitcher, useDesktop } from "./lib/ui/components/DesktopSwitcher"
 import { useNavigationState } from "@proControl/Navigation"
+import { WidgetDisplay } from "@proControl/Dashboard/WidgetDisplay/"
 
 import { History } from "@proControl/Widgets/History"
 import { Current } from "@proControl/Widgets/Current"
@@ -24,37 +25,7 @@ export const Desktop = () => {
     <Grid grdTemplateRows="1fr auto" h="100%">
       <DesktopSwitcher>
         <DesktopItem>
-          <Grid
-            grdTemplateRows="repeat(2, 1fr)"
-            grdTemplateColumns="repeat(4, 1fr)"
-            h="100%"
-            g="$lg"
-          >
-            {/** History */}
-            <GridItem grdColumn="1/3" grdRow="1/2">
-              <History />
-            </GridItem>
-
-            {/** Current */}
-            <GridItem grdColumn="3/5" grdRow="1/2">
-              <Current />
-            </GridItem>
-
-            {/** Speed (with Target)*/}
-            <GridItem grdColumn="2/3" grdRow="2/3">
-              <SpeedWithTarget />
-            </GridItem>
-
-            {/** Distribution */}
-            <GridItem grdColumn="3/4" grdRow="2/3">
-              <Distribution />
-            </GridItem>
-
-            {/** Speed */}
-            <GridItem grdColumn="4/5" grdRow="2/3">
-              <Speed />
-            </GridItem>
-          </Grid>
+          <WidgetDisplay />
         </DesktopItem>
         <DesktopItem>
           <Grid

@@ -1,5 +1,7 @@
+import { WidgetType } from "@proControl/Widgets/types/"
+
 export interface DashboardItemInterface {
-  id: string
+  id: WidgetType
   xPos: number
   yPos: number
   height: number
